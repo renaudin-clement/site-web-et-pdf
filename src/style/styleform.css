@@ -47,7 +47,7 @@ button:hover {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    background-image: url("../document/gradient_2.jpg");
+    background-image: url("../../document/gradient_2.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 }

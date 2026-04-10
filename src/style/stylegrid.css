@@ -39,7 +39,7 @@ form > section{
 
 .wrapper {
   padding:1em;
-  max-width: 940px;
+  max-width: 60%;
   margin: 0 auto;
 }
 
@@ -54,6 +54,10 @@ form > section{
   padding: 1em;
   color: #fff;
   filter: drop-shadow(0 0 0.20rem rgb(165, 165, 165));
+}
+
+.wrapper > div > div {
+    width: 100%;
 }
 
 p{
