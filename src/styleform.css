@@ -1,0 +1,51 @@
+
+
+form {
+    text-align: center;
+    margin:1em;
+}
+
+h1 {
+    font-size: 9em;
+    color: white;
+    margin-bottom: 20px;
+    font-family: Helvetica;
+}
+
+input {
+    width: 100%;
+    padding: 5px 0px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-family: Helvetica;
+}
+
+input:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+button {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 2em;
+    font-family: Helvetica;
+}
+
+button:hover {
+    background: #45a049;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background-image: url("../document/gradient_2.jpg");
+}

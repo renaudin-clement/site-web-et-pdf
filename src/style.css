@@ -10,13 +10,14 @@
             font-family: Arial, sans-serif;
         }
 
-        .iframe-container {
+        .container {
             width: 80%;
             height: 80%;
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
             background: white;
+            filter:drop-shadow(0 0 5.75rem crimson)
         }
 
         iframe {
@@ -46,6 +47,22 @@
             width: 100%;
             margin: 1em;
             text-align: center;
-            
+        }
+
+
+        .error>#errorimg1{
+            width: 7%;
+            position: absolute;
+            inset-inline-start:-3%;
+            inset-block-start: -83%;
+            z-index: 7;
+        }
+
+        .error>#errorimg2{
+            width: 7%;
+            position: absolute;
+            inset-inline-start: 95%;
+            inset-block-start: -83%;
+            z-index: 7;
         }
         

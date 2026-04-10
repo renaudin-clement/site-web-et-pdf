@@ -19,13 +19,14 @@ export const supabase = createClient(supabaseUrl, supabaseKey)
 
 
 // 2. Se connecter
-const { data, error } = await supabase.auth.signInWithPassword({
+const { data, error:errorlog } = await supabase.auth.signInWithPassword({
   email:import.meta.env.VITE_EMAIL,
   password:import.meta.env.VITE_PASSWORD,
 });
 
-if (error) {
-  elem2.textContent = error.message;
+if (errorlog) {
+  elem2.textContent = errorlog.message;
+  elem2.textContent += " petit probleme coter code les loggin on du changer";
   if( elem.style.getPropertyValue("visibility")){
     elem.style.removeProperty("visibility");
   }
