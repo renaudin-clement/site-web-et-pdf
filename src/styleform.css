@@ -1,8 +1,8 @@
-
-
 form {
+    width: 91%;
+    height: 80%;
     text-align: center;
-    margin:1em;
+    margin: 1em;
 }
 
 h1 {
@@ -18,8 +18,8 @@ input {
     border-radius: 8px;
     border: 1px solid #ddd;
     margin-bottom: 15px;
-    font-size: 16px;
     font-family: Helvetica;
+    font-size: 5em
 }
 
 input:focus {
@@ -42,10 +42,12 @@ button:hover {
     background: #45a049;
 }
 
-.container{
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     background-image: url("../document/gradient_2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }

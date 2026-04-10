@@ -19,41 +19,35 @@ export const supabase = createClient(supabaseUrl, supabaseKey)
 
 
 // 2. Se connecter
-const { data, error:errorlog } = await supabase.auth.signInWithPassword({
-  email:import.meta.env.VITE_EMAIL,
-  password:import.meta.env.VITE_PASSWORD,
+const { data, error: errorlog } = await supabase.auth.signInWithPassword({
+  email: import.meta.env.VITE_EMAIL,
+  password: import.meta.env.VITE_PASSWORD,
 });
 
 if (errorlog) {
   elem2.textContent = errorlog.message;
   elem2.textContent += " petit probleme coter code les loggin on du changer";
-  if( elem.style.getPropertyValue("visibility")){
+  if (elem.style.getPropertyValue("visibility")) {
     elem.style.removeProperty("visibility");
   }
-  
-
   console.error('Erreur connexion:', error.message)
 } else {
   console.log('Connecté :', data.session)
-
-
-
-
 
   // 3. Utiliser le storage APRÈS connexion
   const { data: signedData, error: signedError } = await supabase.storage.from('pdf').createSignedUrl('PDFstocker/PDF1.pdf', 3600)
 
   const { data: files, error } = await supabase.storage.from('pdf').list()
-    console.log(files)
+  console.log(files)
   if (signedError) {
-      elem2.textContent = signedError.message;
-      if( elem.style.getPropertyValue("visibility")){
-        elem.style.removeProperty("visibility");
-      }
+    elem2.textContent = signedError.message;
+    if (elem.style.getPropertyValue("visibility")) {
+      elem.style.removeProperty("visibility");
+    }
     console.error('Erreur signed URL:', signedError.message)
   } else {
     console.log(signedData.signedUrl)
   }
   const iframe = document.querySelector('iframe')
-    iframe.src = signedData.signedUrl
+  iframe.src = signedData.signedUrl
 }

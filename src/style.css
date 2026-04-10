@@ -15,9 +15,9 @@
             height: 80%;
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
             background: white;
-            filter:drop-shadow(0 0 5.75rem crimson)
+            filter: drop-shadow(0 0 5.75rem crimson)
         }
 
         iframe {
@@ -26,11 +26,11 @@
             border: none;
         }
 
-        .error{
+        .error {
             display: flex;
             justify-content: center;
             align-items: center;
-            
+
             background-image: url("/document/4028.jpg");
             z-index: 3;
             width: 80%;
@@ -38,10 +38,10 @@
             border-radius: 8%;
             inset-inline-start: 10%;
             inset-block-start: 93%;
- 
+
         }
 
-        .error>p{
+        .error>p {
             background-color: rgb(255, 255, 255);
             z-index: 3;
             width: 100%;
@@ -50,19 +50,18 @@
         }
 
 
-        .error>#errorimg1{
+        .error>#errorimg1 {
             width: 7%;
             position: absolute;
-            inset-inline-start:-3%;
+            inset-inline-start: -3%;
             inset-block-start: -83%;
             z-index: 7;
         }
 
-        .error>#errorimg2{
+        .error>#errorimg2 {
             width: 7%;
             position: absolute;
             inset-inline-start: 95%;
             inset-block-start: -83%;
             z-index: 7;
         }
-        
