@@ -24,3 +24,28 @@
             height: 100%;
             border: none;
         }
+
+        .error{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            background-image: url("/document/4028.jpg");
+            z-index: 3;
+            width: 80%;
+            position: absolute;
+            border-radius: 8%;
+            inset-inline-start: 10%;
+            inset-block-start: 93%;
+ 
+        }
+
+        .error>p{
+            background-color: rgb(255, 255, 255);
+            z-index: 3;
+            width: 100%;
+            margin: 1em;
+            text-align: center;
+            
+        }
+        
