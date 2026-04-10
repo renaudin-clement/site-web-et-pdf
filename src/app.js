@@ -1,5 +1,8 @@
 import { createClient } from '@supabase/supabase-js';
 
+const elem = document.getElementById("error");
+const elem2 = document.getElementById("errortext");
+
 
 
 console.log("test");
@@ -14,7 +17,6 @@ if (!supabaseUrl || !supabaseKey) {
 
 export const supabase = createClient(supabaseUrl, supabaseKey)
 
-console.log(supabase);
 
 // 2. Se connecter
 const { data, error } = await supabase.auth.signInWithPassword({
@@ -23,6 +25,12 @@ const { data, error } = await supabase.auth.signInWithPassword({
 });
 
 if (error) {
+  elem2.textContent = error.message;
+  if( elem.style.getPropertyValue("visibility")){
+    elem.style.removeProperty("visibility");
+  }
+  
+
   console.error('Erreur connexion:', error.message)
 } else {
   console.log('Connecté :', data.session)
@@ -36,10 +44,11 @@ if (error) {
 
   const { data: files, error } = await supabase.storage.from('pdf').list()
     console.log(files)
-
-    console.log('signedError:', signedError)
-
-  if (error) {
+  if (signedError) {
+      elem2.textContent = signedError.message;
+      if( elem.style.getPropertyValue("visibility")){
+        elem.style.removeProperty("visibility");
+      }
     console.error('Erreur signed URL:', signedError.message)
   } else {
     console.log(signedData.signedUrl)
