@@ -4,13 +4,11 @@ export default class Home extends Page_comp {
   
   async render() {
     // Affichage de la page
-    var boxElem = document.querySelector("link");
-       boxElem.innerHTML= `<link href="/src/assets/style/style.css" rel="stylesheet" />
-        <link href="/src/assets/style/styleform.css" rel="stylesheet" />
-        <link href="/src/assets/style/stylegrid.css" rel="stylesheet" />
-        <link href="/src/assets/style/draganddrop.css" rel="stylesheet" />`
 
     return Page_comp.renderPage(() => `
+        <link href="/src/assets/style/stylegrid.css" rel="stylesheet" />
+        <link href="/src/assets/style/draganddrop.css" rel="stylesheet" />
+
         <div class="container">
             <h1 style="font-size:4em">Gestion Document</h1>
             <form action="">
