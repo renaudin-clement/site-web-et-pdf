@@ -35,7 +35,7 @@ if (errorlog) {
   console.log('Connecté :', data.session)
 
   // 3. Utiliser le storage APRÈS connexion
-  const { data: signedData, error: signedError } = await supabase.storage.from('pdf').createSignedUrl('PDFstocker/PDF1.pdf', 3600)
+  const { data: signedData, error: signedError } = await supabase.storage.from('pdf').createSignedUrl('PDFstocker/elecr.pdf', 3600)
 
   const { data: files, error } = await supabase.storage.from('pdf').list()
   console.log(files)

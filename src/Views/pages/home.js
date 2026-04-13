@@ -13,9 +13,9 @@ export default class Home extends Page_comp {
         </div>
 
         <div class="error" id="error" style="visibility: hidden;">
-            <img id="errorimg2" src="/src/assets/img/travailleur-plat-cle.png" alt="travailleur">
+            <img id="errorimg2" src="/travailleur-plat-cle.png" alt="travailleur">
             <p id="errortext"></p>
-            <img id="errorimg1" src="/src/assets/img/travailleur-plat-cle.png" alt="travailleur">
+            <img id="errorimg1" src="/travailleur-plat-cle.png" alt="travailleur">
         </div>
 
         <section class="separateur"> 
@@ -32,6 +32,7 @@ export default class Home extends Page_comp {
 
 
         <script type="module" src="/src/app.js"></script>
+        <script type="module" src="/src/utils/supabasemanagement.js"></script>
     `);
   }
 }
