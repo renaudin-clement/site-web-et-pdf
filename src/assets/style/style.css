@@ -4,7 +4,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-image: url("/document/9696.jpg");
+            background-image: url("/src/assets/img/9696.jpg");
             background-repeat: no-repeat;
             background-size: cover;
             font-family: Arial, sans-serif;
@@ -31,7 +31,7 @@
             justify-content: center;
             align-items: center;
 
-            background-image: url("/document/4028.jpg");
+            background-image: url("/src/assets/img/4028.jpg");
             z-index: 3;
             width: 80%;
             position: absolute;
