@@ -4,6 +4,10 @@ export default class Authentification extends Page_comp {
   
   async render() {
     // Affichage de la page
+    var boxElem = document.querySelector("link");
+       boxElem.innerHTML= `<link href="/src/assets/style/style.css" rel="stylesheet" />
+        <link href="/src/assets/style/styleform.css" rel="stylesheet" />`
+        
     return Page_comp.renderPage(() => `
         <div class="container">
             <form action="connection()">
