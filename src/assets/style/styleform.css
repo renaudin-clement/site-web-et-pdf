@@ -1,8 +1,12 @@
-form {
+.autform , .gridforme{
     width: 91%;
     height: 80%;
     text-align: center;
     margin: 1em;
+}
+
+.autform{
+    align-content:center;
 }
 
 h1 {

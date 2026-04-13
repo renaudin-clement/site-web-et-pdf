@@ -10,7 +10,7 @@ export default class Authentification extends Page_comp {
 
     return Page_comp.renderPage(() => `
         <div class="container">
-            <form action="connection()">
+            <form action="connection()" class="autform">
                 <h1>Tape le code</h1>
                 <input type="text" name="ok" id="lecode">
                 <button> Valider</button>
