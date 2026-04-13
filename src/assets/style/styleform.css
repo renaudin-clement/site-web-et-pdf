@@ -32,7 +32,7 @@ input:focus {
     border-color: #4CAF50;
 }
 
-button {
+button , a {
     background: #4CAF50;
     color: white;
     border: none;
@@ -40,12 +40,23 @@ button {
     border-radius: 8px;
     cursor: pointer;
     font-size: 2em;
+    margin: 1em;
     font-family: Helvetica;
+    width: fit-content;
+    height: fit-content;
 }
 
-button:hover {
+button:hover , a:hover  {
     background: #45a049;
 }
+
+.separateur{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
 
 .container {
     display: flex;

@@ -87,6 +87,11 @@ export default class Home extends Page_comp {
 
             </form>
         </div>
+
+        <nav class="separateur"> 
+            <a href="/#/home">home</a>
+            <a href="/#/aut">authentification</a>
+        </nav>
     `);
   }
 }

@@ -1,6 +1,13 @@
+        html{
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
+        
         body {
             margin: 0;
-            height: 100vh;
+            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -8,6 +15,7 @@
             background-repeat: no-repeat;
             background-size: cover;
             font-family: Arial, sans-serif;
+            flex-wrap: wrap;
         }
 
         .container {
