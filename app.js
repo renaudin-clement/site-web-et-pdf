@@ -1,15 +1,16 @@
-import Home_page from "/src/Views/pages/exemplepage.js";
-
-
+import Home_page from "/src/Views/pages/home.js";
+import Authentification from "/src/Views/pages/authentification.js";
+import Document from "/src/Views/pages/griddocument.js";
+import Error_Page from "/src/Views/pages/error_page.js";
 import Utils from "/src/services/routeurfonction.js";
 
 
 const routes = {
     ""             : Home_page,
     "/"            : Home_page,
-    "/home"        : Home_page,
-
-    
+    "/home"            : Home_page,
+    "/aut"        :  Authentification,
+    "/document"        :  Document,
 }
 
 const router = async () => {
