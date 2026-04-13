@@ -1,14 +1,9 @@
-import Page_comp from "../composants/pagecomposer.js";
+<script setup>
 
-import { initGrid } from "../../utils/supabaseGrid.js";
+</script>
 
-export default class Home extends Page_comp {
-
-    async render() {
-        // Affichage de la page
-
-        return Page_comp.renderPage(() => `
-        <div class="container">
+<template>
+<div class="container">
             <h1 style="font-size:4em">Gestion Document</h1>
             <form action="" class="gridforme">
                 <section>
@@ -39,10 +34,12 @@ export default class Home extends Page_comp {
             <a href="/#/home">home</a>
             <a href="/#/aut">authentification</a>
         </nav>
-    `);
-    }
+</template>
 
-    async afterRender() {
-        await initGrid();
-    };
-}
+
+<style scoped>
+
+</style>
+
+
+

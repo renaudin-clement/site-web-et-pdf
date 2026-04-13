@@ -1,0 +1,30 @@
+@import './base.css';
+
+body{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  font-weight: normal;
+}
+
+
+#app {
+    margin: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("/src/assets/img/9696.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    flex-wrap: wrap;
+}
+
