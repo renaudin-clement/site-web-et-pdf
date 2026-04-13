@@ -1,10 +1,10 @@
 <script>
 import document from '@/components/document.vue';
-
+import listedocument from "../utils/supabaselsit.js";
     export default {
     data() {
         return {
-        videoTitle: [1,2,3,4,5,6],
+        nomPdf: [],
         nbtotal: 0,
         };
     },
@@ -12,7 +12,7 @@ import document from '@/components/document.vue';
         document
     },
     mounted() {
-        
+        this.nomPdf = listedocument;
     }
     };
 </script>
@@ -39,8 +39,7 @@ import document from '@/components/document.vue';
                 </section>
             </section>
             <div class="wrapper scroller">
-                <document :place="nbtotal +1" v-for="item in videoTitle" />
-                
+                <document :place="nomPdf.indexOf(item)" :name="item.name" v-for="item in nomPdf" />
             </div>
 
         </form>
@@ -52,5 +51,11 @@ import document from '@/components/document.vue';
     </nav>
 </template>
 
+<style scoped>
 
-<style scoped></style>
+.wrapper{
+    width:59%;
+}
+
+</style>
+
