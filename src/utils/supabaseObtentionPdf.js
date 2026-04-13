@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 
+
 const elem = document.getElementById("error");
 const elem2 = document.getElementById("errortext");
 

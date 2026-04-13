@@ -1,16 +1,21 @@
 import './assets/main.css'
 import { createMemoryHistory, createRouter } from 'vue-router'
+import { createApp } from 'vue'
+import App from './App.vue'
 
 import Aunth from './Views/authentification.vue'
 import Home from './Views/home.vue'
-import { createApp } from 'vue'
-import App from './App.vue'
+import Document from './Views/grid.vue'
+
 
 
 
 const routes = [
   { path: '/', component:  Home},
-  { path: '/about', component: Aunth },
+  { path: '/home', component:  Home},
+  { path: '/aut', component: Aunth },
+  { path: '/document', component:  Document},
+  { path: '/error', component: Aunth },
 ]
 
 export const router = createRouter({

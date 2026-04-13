@@ -1,45 +1,56 @@
-<script setup>
+<script>
+import document from '@/components/document.vue';
 
+    export default {
+    data() {
+        return {
+        videoTitle: [1,2,3,4,5,6],
+        nbtotal: 0,
+        };
+    },
+    components: {
+        document
+    },
+    mounted() {
+        
+    }
+    };
 </script>
 
 <template>
-<div class="container">
-            <h1 style="font-size:4em">Gestion Document</h1>
-            <form action="" class="gridforme">
-                <section>
+    <div class="container">
+        <h1 style="font-size:4em">Gestion Document</h1>
+        <form action="" class="gridforme">
+            <section>
 
-                    <h2>DOC DOC</h2>
-                    <div id="drop-zone"> 
-                        <p>Dépose tes fichiers ici</p> 
-                    </div>
-                    <section class="chargment" style="">
-                        <p>chargement ...</p>
-                        <img src="/src/assets/img/189768.png" alt="chargement">
-                    </section>
-
-                    <section>
-                        <button class="button-15" role="button">Button 15</button>
-                        <button class="button-15" role="button">Button 15</button>
-                        <button class="button-15" role="button">Button 15</button>
-                    </section>
-                </section>
-                <div class="wrapper scroller">
-                   
+                <h2>DOC DOC</h2>
+                <div id="drop-zone">
+                    <p>Dépose tes fichiers ici</p>
                 </div>
+                <section class="chargment" style="">
+                    <p>chargement ...</p>
+                    <img src="/src/assets/img/189768.png" alt="chargement">
+                </section>
 
-            </form>
-        </div>
+                <section>
+                    <button class="button-15" role="button">Button 15</button>
+                    <button class="button-15" role="button">Button 15</button>
+                    <button class="button-15" role="button">Button 15</button>
+                </section>
+            </section>
+            <div class="wrapper scroller">
+                <document :place="nbtotal +1" v-for="item in videoTitle" />
+                
+            </div>
 
-        <nav class="separateur"> 
-            <a href="/#/home">home</a>
-            <a href="/#/aut">authentification</a>
-        </nav>
+        </form>
+    </div>
+
+    <nav class="separateur">
+        <RouterLink to="/home">home</RouterLink>
+        <RouterLink to="/aut">authentification</RouterLink>
+    </nav>
 </template>
 
 
-<style scoped>
-
-</style>
-
-
-
+<style scoped></style>

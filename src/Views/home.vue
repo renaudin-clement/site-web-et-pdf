@@ -1,19 +1,20 @@
-<script setup>
-
+<script>
+ export * from "../utils/supabaseObtentionPdf";
 </script>
 
 <template>
     <div class="container">
-        <iframe src=""></iframe>
+        <iframe src="/public/elecr.pdf"></iframe>
     </div>
     <div class="error" id="error" style="visibility: hidden;">
         <img id="errorimg2" src="/travailleur-plat-cle.png" alt="travailleur">
         <p id="errortext"></p>
         <img id="errorimg1" src="/travailleur-plat-cle.png" alt="travailleur">
     </div>
-    <section class="separateur"> 
-        <a href="/#/aut">autentification</a>
-        <a href="/#/document">document</a>
+    <section class="separateur">
+        <RouterLink to="/aut">autentification</RouterLink>
+        <RouterLink to="/document">document</RouterLink>
+
         <section>
             <button class="button-15" role="button">Charger</button>
             <button class="button-15" role="button">Aide 15</button>
@@ -23,6 +24,4 @@
 </template>
 
 
-<style scoped>
-
-</style>
+<style scoped></style>
