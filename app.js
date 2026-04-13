@@ -23,6 +23,10 @@ const router = async () => {
     console.log("PAGE : ",page);
     console.log("TYPEOF PAGE : ",typeof page);
     content.innerHTML = await page.render();
+    
+    if (typeof page.afterRender === "function") {
+        await page.afterRender();
+    }
 };
 
 window.addEventListener("load",router);
