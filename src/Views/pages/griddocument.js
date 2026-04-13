@@ -1,11 +1,13 @@
 import Page_comp from "../composants/pagecomposer.js";
 
-export default class Home extends Page_comp {
-  
-  async render() {
-    // Affichage de la page
+import { initGrid } from "../../utils/supabaseGrid.js";
 
-    return Page_comp.renderPage(() => `
+export default class Home extends Page_comp {
+
+    async render() {
+        // Affichage de la page
+
+        return Page_comp.renderPage(() => `
         <div class="container">
             <h1 style="font-size:4em">Gestion Document</h1>
             <form action="" class="gridforme">
@@ -27,57 +29,7 @@ export default class Home extends Page_comp {
                     </section>
                 </section>
                 <div class="wrapper scroller">
-                    <div class="one">
-                        <p>Un</p>
-                        <img src="/pdf_file.png" alt="">
-                        <div>
-                            <input class="checkbox" type="checkbox" name="" id="">
-                        </div>
-
-                    </div>
-
-                    <div class="two">
-                        <p>Deux</p>
-                        <img src="/pdf_file.png" alt="">
-                        <div>
-                            <input class="checkbox" type="checkbox" name="" id="">
-                        </div>
-
-                    </div>
-
-                    <div class="three">
-                        <p>Trois</p>
-                        <img src="/pdf_file.png" alt="">
-                        <div>
-                            <input class="checkbox" type="checkbox" name="" id="">
-                        </div>
-
-                    </div>
-
-                    <div class="four">
-                        <p>Quatre</p>
-                        <img src="/pdf_file.png" alt="">
-                        <div>
-                            <input class="checkbox" type="checkbox" name="" id="">
-                        </div>
-                    </div>
-
-                    <div class="five">
-                        <p>Cinq</p>
-                        <img src="/pdf_file.png" alt="">
-                        <div>
-                            <input class="checkbox" type="checkbox" name="" id="">
-                        </div>
-                    </div>
-
-                    <div class="six">
-                        <p>Six</p>
-                        <img src="/pdf_file.png" alt="">
-                        <div>
-                            <input class="checkbox" type="checkbox" name="" id="">
-                        </div>
-                    </div>
-
+                   
                 </div>
 
             </form>
@@ -88,5 +40,9 @@ export default class Home extends Page_comp {
             <a href="/#/aut">authentification</a>
         </nav>
     `);
-  }
+    }
+
+    async afterRender() {
+        await initGrid();
+    };
 }

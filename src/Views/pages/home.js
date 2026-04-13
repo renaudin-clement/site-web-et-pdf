@@ -1,5 +1,6 @@
 import Page_comp from "../composants/pagecomposer.js";
-import { initPage } from "../../utils/supabasemanagement.js";
+import { initPage } from "../../utils/supabaseObtentionPdf.js";
+
 
 export default class Home extends Page_comp {
   
