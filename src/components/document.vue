@@ -24,11 +24,11 @@ export default {
 </script>
 
 <template>
-  <li class="one" style="grid-column: '{{this.collones}}' ; grid-row: '{{this.ligne}}';">
+  <li class="one" style="grid-column: '{{this.collones}}' ; grid-row: '{{this.ligne}}';" v-if=' this.name != ".emptyFolderPlaceholder"' >
     <p>{{this.name}}</p>
-    <img src="/public/pdf_file.png" alt="">
+    <img src="/public/pdf_file.png" alt="document PDF">
     <div>
-      <input class="checkbox" type="checkbox" name="" id="">
+      <input class="checkbox" type="checkbox" :name='"checkbox_"+(this.collones*3+this.ligne)' id="">
     </div>
   </li>
 </template>
