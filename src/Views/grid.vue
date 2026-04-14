@@ -1,14 +1,17 @@
 <script>
 import document from '@/components/document.vue';
 import { refreshlist, Ajouter, Supprimer } from "../utils/supabaselist.js";
+import { GetSelected, UpdateFile } from "../utils/getSelectedFile.js";
+
 export default {
     data() {
         return {
             nomPdf: [1,2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19,20,1,2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19,20],
             nbtotal: 0,
             lien: "public/elecr.pdf",
-            nameSelect: "elecr.pdf",
-            fichieracreer: null
+            nameSelect: "",
+            appliquer:"",
+            fichieracreer: null,
         };
     },
     components: {
@@ -18,6 +21,8 @@ export default {
         Ajouter,
         Supprimer,
         refreshlist,
+        GetSelected,
+        UpdateFile,
 
         handleFileChange(event) {
             const file = event.target.files?.[0];
@@ -32,6 +37,7 @@ export default {
             console.log(this.fichieracreer);
             await Ajouter(this.fichieracreer);
             this.nomPdf = await refreshlist();
+            this.fichieracreer=null;
         },
 
         async handleSupprimer() {
@@ -41,6 +47,7 @@ export default {
     },
     async mounted() {
         this.nomPdf = await refreshlist();
+        this.appliquer = await GetSelected();
     }
 };
 </script>
@@ -63,10 +70,12 @@ export default {
                     <section>
                         <p>Fichier Deposer</p>
                         <img class="petitimage" src="/public/pdf_file.png" alt="document PDF">
+                        <p v-if="this.fichieracreer != null">{{ this.fichieracreer.name}}</p>
                     </section>
                     <section>
                         <p>Fichier Appliqué</p>
                         <img class="petitimage" src="/public/pdf_file.png" alt="document PDF">
+                        <p>{{ this.appliquer }}</p>
                     </section>
                 </section>
 
@@ -231,9 +240,9 @@ export default {
     text-align: left;
     padding-right: 1em;
     padding-left: 1em;
-    font-size: 1.7em;
+    font-size: 1em;
     color: white;
-    min-width: 64%;
+    min-width: 35%;
 }
 
 .petitimage{

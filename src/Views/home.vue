@@ -33,11 +33,6 @@ export default {
     <div class="container">
         <iframe :src="this.lienActif"></iframe>
     </div>
-    <div class="error" id="error" style="visibility: hidden;">
-        <img id="errorimg2" src="/travailleur-plat-cle.png" alt="travailleur">
-        <p id="errortext"></p>
-        <img id="errorimg1" src="/travailleur-plat-cle.png" alt="travailleur">
-    </div>
     <section class="separateur">
         <RouterLink to="/document">document</RouterLink>
         <section>
