@@ -5,18 +5,7 @@
             width: 100%;
         }
         
-        body {
-            margin: 0;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-image: url("/src/assets/img/9696.jpg");
-            background-repeat: no-repeat;
-            background-size: cover;
-            font-family: Arial, sans-serif;
-            flex-wrap: wrap;
-        }
+
 
         .container {
             width: 80%;

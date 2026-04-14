@@ -34,7 +34,6 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
-  grid-auto-rows: minmax(100px, auto);
 }
 
 .wrapper {
@@ -43,20 +42,24 @@
   margin: 0 auto;
 }
 
-.wrapper > div {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  flex-wrap: wrap;
+.wrapper > li {
   border: 2px solid rgb(175, 175, 175);
   border-radius: 5px;
   background-color: rgba(106, 96, 96, 0.82);
   padding: 1em;
   color: #fff;
   filter: drop-shadow(0 0 0.20rem rgb(165, 165, 165));
+  list-style-type: none;
 }
 
-.wrapper > div > div {
+.wrapper > li > label{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+}
+
+.wrapper > li > label> div {
     width: 100%;
 }
 
@@ -69,33 +72,8 @@ h1{
     margin:0;
 }
 
-.wrapper > div > img{
+.wrapper > li > label > img{
     padding: 1em;
     width: 7em;
 }
 
-
-.one {
-  grid-column: 1;
-  grid-row: 1;
-}
-.two {
-  grid-column: 2;
-  grid-row: 1;
-}
-.three {
-  grid-column: 3;
-  grid-row: 1;
-}
-.four {
-  grid-column: 4;
-  grid-row: 1;
-}
-.five {
-  grid-column: 1;
-  grid-row: 2;
-}
-.six {
-  grid-column: 2;
-  grid-row: 2;
-}

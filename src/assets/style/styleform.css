@@ -73,18 +73,3 @@ button:hover , a:hover  {
 }
 
 
-.chargment{
-    width: 100%;
-    display: flex;
-    flex-wrap: nowrap;
-    text-align: center;
-}
-
-.chargment > img{
-    width: 1em;
-}
-
-.chargment > p{
-    width: 50%;
-    text-align: center;
-}

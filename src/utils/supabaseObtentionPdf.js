@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 
+
 const elem = document.getElementById("error");
 const elem2 = document.getElementById("errortext");
 
@@ -48,4 +49,5 @@ export async function initPage() {
 
   console.log(signedData.signedUrl);
   document.querySelector('iframe').src = signedData.signedUrl;
+  return signedData.signedUrl;
 }

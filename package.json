@@ -8,10 +8,17 @@
     "build": "vite build",
     "preview": "vite preview"
   },
-  "devDependencies": {
-    "vite": "^8.0.4"
-  },
   "dependencies": {
-    "@supabase/supabase-js": "^2.103.0"
+    "vue": "^3.5.31",
+    "vue-router": "^4.6.4"
+  },
+  "devDependencies": {
+    "@supabase/supabase-js": "^2.103.0",
+    "@vitejs/plugin-vue": "^6.0.5",
+    "vite": "^8.0.3",
+    "vite-plugin-vue-devtools": "^8.1.1"
+  },
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
   }
 }
