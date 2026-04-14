@@ -27,13 +27,17 @@ export async function Ajouter(file) {
 }
 
 export async function Supprimer(nom) {
+  console.log(nom);
   const { data, error } = await supabase.storage.from('pdf').remove(['PDFstocker/' + nom]);
+  
+  if(data.length == 0){
+    console.error("impossible de supprimer un fichier qui n'existe pas : vous avez selectionner \""+nom+"\"");
+  }
 
   if (error) {
     console.error("Error removing files:", error);
   } else {
     console.log("Files removed successfully:", data);
-
   }
 }
 
