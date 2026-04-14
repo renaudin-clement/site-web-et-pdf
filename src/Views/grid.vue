@@ -1,18 +1,38 @@
 <script>
 import document from '@/components/document.vue';
-import listedocument from "../utils/supabaselsit.js";
+import {listedocument,Ajouter,Supprimer} from "../utils/supabaselist.js";
     export default {
     data() {
         return {
         nomPdf: [],
         nbtotal: 0,
+        lien:"public/elecr.pdf",
+        nameSelect:"elecr.pdf",
+        fichieracreer: null
         };
     },
     components: {
         document
     },
-    mounted() {
+    methods: {
+    Ajouter,
+    Supprimer,
+    listedocument,
+    handleFileChange(event) {
+      const file = event.target.files?.[0]
+      if (file) {
+        this.fichieracreer = file
+        console.log(this.fichieracreer)
+      }
+        }
+    },
+    async mounted() {
         this.nomPdf = listedocument;
+        
+        
+        
+
+        
     }
     };
 </script>
@@ -33,9 +53,11 @@ import listedocument from "../utils/supabaselsit.js";
                 </section>
 
                 <section>
-                    <button class="button-15" role="button">Button 15</button>
-                    <button class="button-15" role="button">Button 15</button>
-                    <button class="button-15" role="button">Button 15</button>
+                    <input type="file" id="fileInput" @change="handleFileChange" ref="fichiercreer">
+                    <button class="button-15" role="button" type="button">valider</button>
+                    <button class="button-15" role="button" type="button" @click="Ajouter(this.fichieracreer)">ajouter</button>
+                    <button class="button-15" role="button" type="button" @click="Supprimer(this.nameSelect)" >supprimer</button>
+                    <button class="button-15" role="button" type="button">Annuler</button>
                 </section>
             </section>
             <div class="wrapper scroller">
@@ -55,6 +77,10 @@ import listedocument from "../utils/supabaselsit.js";
 
 .wrapper{
     width:59%;
+}
+
+#fileInput{
+    font-size:1em;
 }
 
 </style>
