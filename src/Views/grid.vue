@@ -4,7 +4,7 @@ import { refreshlist, Ajouter, Supprimer } from "../utils/supabaselist.js";
 export default {
     data() {
         return {
-            nomPdf: [],
+            nomPdf: [1,2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19,20,1,2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19,20],
             nbtotal: 0,
             lien: "public/elecr.pdf",
             nameSelect: "elecr.pdf",
@@ -61,7 +61,7 @@ export default {
                 </section>
                 <section class="chargment">
                     <section>
-                        <p>Fichier Ajouter</p>
+                        <p>Fichier Deposer</p>
                         <img class="petitimage" src="/public/pdf_file.png" alt="document PDF">
                     </section>
                     <section>

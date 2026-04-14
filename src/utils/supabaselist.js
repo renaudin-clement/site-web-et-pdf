@@ -67,6 +67,20 @@ export async function Supprimer(nom) {
   }
 }
 
+export async function UpdateFile(file) {
+  console.log("le ficher :" + file);
+  let { data:updatedata, error: updateError } = await supabase.storage.from('pdf').update('PDFstocker/' + file.name, file);
+
+  if (updateError) {
+    console.error("Error Update files:", signedError);
+  } else {
+    console.log("Files Update successfully:", updatedata);
+  }
+}
+
+
 export function Enregistrer() {
 
 }
+
+

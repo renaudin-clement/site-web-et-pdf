@@ -25,16 +25,27 @@ export default {
 
 <template>
   <li class="one" style="grid-column: '{{this.collones}}' ; grid-row: '{{this.ligne}}';" v-if=' this.name != ".emptyFolderPlaceholder"' >
-    <p>{{this.name}}</p>
-    <img src="/public/pdf_file.png" alt="document PDF">
-    <div>
-      <input class="checkbox" type="checkbox" :name='"checkbox_"+(this.collones*3+this.ligne)' id="">
-    </div>
+    <label :for='"checkbox_"+this.place'>
+      <p>{{this.name}}</p>
+      <img src="/public/pdf_file.png" alt="document PDF">
+      <div>
+        <input class="checkbox" type="checkbox" :id='"checkbox_"+this.place' :name='"checkbox_"+this.place' id="">
+      </div>
+    </label>
   </li>
 </template>
 
 <style scoped>
 li{
-  min-height:15em;
+  max-width: 100%;
+  max-height: 15em;
 }
+
+label{
+  width: 100%;
+  height: 100%;
+}
+
+
+
 </style>
