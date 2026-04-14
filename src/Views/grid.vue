@@ -61,11 +61,11 @@ export default {
                 </section>
                 <section class="chargment">
                     <section>
-                        <p>chargement ...</p>
-                        <img class="petitimage" src="/src/assets/img/189768.png" alt="chargement">
+                        <p>Fichier Ajouter</p>
+                        <img class="petitimage" src="/public/pdf_file.png" alt="document PDF">
                     </section>
                     <section>
-                        <p>file</p>
+                        <p>Fichier Appliqué</p>
                         <img class="petitimage" src="/public/pdf_file.png" alt="document PDF">
                     </section>
                 </section>
@@ -221,16 +221,19 @@ export default {
     width: 100%;
     display: flex;
     flex-wrap: nowrap;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
 }
 
 .chargment > section > p{
     width: fit-content;
-    max-width: fit-content ;
-    text-align: center;
+    max-width: fit-content;
+    text-align: left;
     padding-right: 1em;
+    padding-left: 1em;
     font-size: 1.7em;
+    color: white;
+    min-width: 64%;
 }
 
 .petitimage{
