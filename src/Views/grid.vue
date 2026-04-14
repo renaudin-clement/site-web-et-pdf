@@ -1,40 +1,48 @@
 <script>
 import document from '@/components/document.vue';
-import {listedocument,Ajouter,Supprimer} from "../utils/supabaselist.js";
-    export default {
+import { refreshlist, Ajouter, Supprimer } from "../utils/supabaselist.js";
+export default {
     data() {
         return {
-        nomPdf: [],
-        nbtotal: 0,
-        lien:"public/elecr.pdf",
-        nameSelect:"elecr.pdf",
-        fichieracreer: null
+            nomPdf: [],
+            nbtotal: 0,
+            lien: "public/elecr.pdf",
+            nameSelect: "elecr.pdf",
+            fichieracreer: null
         };
     },
     components: {
         document
     },
     methods: {
-    Ajouter,
-    Supprimer,
-    listedocument,
-    handleFileChange(event) {
-      const file = event.target.files?.[0]
-      if (file) {
-        this.fichieracreer = file
-        console.log(this.fichieracreer)
-      }
-        }
+        Ajouter,
+        Supprimer,
+        refreshlist,
+
+        handleFileChange(event) {
+            const file = event.target.files?.[0];
+            if (file) {
+                this.fichieracreer = file;
+                console.log(this.fichieracreer);
+                console.log(file.name);
+            }
+
+        },
+        async handleAjouter() {
+            console.log(this.fichieracreer);
+            await Ajouter(this.fichieracreer);
+            this.nomPdf = await refreshlist();
+        },
+
+        async handleSupprimer() {
+            await Supprimer(this.nameSelect);
+            this.nomPdf = await refreshlist();
+        },
     },
     async mounted() {
-        this.nomPdf = listedocument;
-        
-        
-        
-
-        
+        this.nomPdf = await refreshlist();
     }
-    };
+};
 </script>
 
 <template>
@@ -55,8 +63,8 @@ import {listedocument,Ajouter,Supprimer} from "../utils/supabaselist.js";
                 <section>
                     <input type="file" id="fileInput" @change="handleFileChange" ref="fichiercreer">
                     <button class="button-15" role="button" type="button">valider</button>
-                    <button class="button-15" role="button" type="button" @click="Ajouter(this.fichieracreer)">ajouter</button>
-                    <button class="button-15" role="button" type="button" @click="Supprimer(this.nameSelect)" >supprimer</button>
+                    <button class="button-15" role="button" type="button" @click="handleAjouter()">ajouter</button>
+                    <button class="button-15" role="button" type="button" @click="handleSupprimer()">supprimer</button>
                     <button class="button-15" role="button" type="button">Annuler</button>
                 </section>
             </section>
@@ -74,14 +82,11 @@ import {listedocument,Ajouter,Supprimer} from "../utils/supabaselist.js";
 </template>
 
 <style scoped>
-
-.wrapper{
-    width:59%;
+.wrapper {
+    width: 59%;
 }
 
-#fileInput{
-    font-size:1em;
+#fileInput {
+    font-size: 1em;
 }
-
 </style>
-

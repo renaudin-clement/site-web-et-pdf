@@ -27,22 +27,21 @@ if (errorlog) {
 
 console.log('Connecté :', data.session);
 
-let { data: listedocument, error: signedError } = await supabase.storage.from('pdf').list("PDFstocker");
-
-console.log(listedocument);
-
-export { listedocument };
 
 
-export async function list() {
+
+export async function refreshlist() {
   console.log("liste en cours :");
   let { data: listedocument, error: signedError } = await supabase.storage.from('pdf').list("PDFstocker");
 
   if (signedError) {
     console.error("Error liste files:", signedError);
+    return [];
   } else {
     console.log("liste des fichier : ", listedocument);
+    return listedocument;
   }
+  
 }
 
 
