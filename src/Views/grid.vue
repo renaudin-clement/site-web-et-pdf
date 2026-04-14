@@ -85,8 +85,8 @@ export default {
     </div>
 
     <nav class="separateur">
-        <RouterLink to="/home">home</RouterLink>
-        <RouterLink to="/aut">authentification</RouterLink>
+        <RouterLink tag="button" class="button-14" role="button" to="/home">home</RouterLink>
+        <RouterLink tag="button" class="button-15" role="button" to="/aut">déconnexion</RouterLink>
     </nav>
 </template>
 

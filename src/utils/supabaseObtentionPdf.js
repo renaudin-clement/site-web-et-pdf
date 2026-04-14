@@ -48,6 +48,5 @@ export async function initPage() {
   }
 
   console.log(signedData.signedUrl);
-  document.querySelector('iframe').src = signedData.signedUrl;
   return signedData.signedUrl;
 }
