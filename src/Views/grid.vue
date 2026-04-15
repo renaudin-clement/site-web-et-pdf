@@ -45,6 +45,13 @@ export default {
             await Supprimer(this.listChecboxValide);
             this.nomPdf = await refreshlist();
         },
+
+        async handleUpdateFile() {
+            await UpdateFile(this.listChecboxValide[0]);
+            this.appliquer =await GetSelected();
+            this.nomPdf = await refreshlist();
+        },
+
         onDrop(e) {
             console.log([...e.dataTransfer.files]);
         },
@@ -62,7 +69,7 @@ export default {
             } else {
                 this.listChecboxValide.push(name);
             }
-            
+
             console.log("apres :" + this.listChecboxValide);
         },
     },
@@ -111,7 +118,7 @@ export default {
                 <section class="sectbutton">
                     <button class="button-14 button-s" role="button"
                         :disabled="(this.listChecboxValide.length > 1 || this.listChecboxValide.length <= 0)"
-                        type="button">valider</button>
+                        type="button" @click="handleUpdateFile()" >valider</button>
                     <button class="button-15 button-s" role="button"
                         :disabled='(this.fichieracreer == null || this.fichieracreer == "")' type="button"
                         @click="handleAjouter()">ajouter</button>
@@ -120,7 +127,7 @@ export default {
                         type="button" @click="handleSupprimer()">supprimer</button>
                     <button class="button-17 button-s" role="button"
                         :disabled='((this.fichieracreer == null || this.fichieracreer == "") && (this.listChecboxValide.length == 0 || this.listChecboxValide.length < 0))'
-                        type="button">Annuler</button>
+                        type="button">Annuler</button>handleUpdateFile
                 </section>
             </section>
             <div class="wrapper scroller">

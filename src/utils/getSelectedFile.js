@@ -22,16 +22,25 @@ export async function GetSelected() {
 }
 
 
-export async function UpdateFile(file) {
-    console.log("le ficher :" + file);
-    let { data: updatedata, error: updateError } = await supabase.storage
+export async function UpdateFile(Word) {
+
+   
+    const newFile = new Blob([Word], {
+        type: "text/plain"
+    })
+
+    const { data:updatedata, error:updateError } = await supabase.storage
         .from('pdf')
-        .update('Selected', file);
+        .update('Select.txt', newFile, {
+            contentType: "text/plain",
+            upsert: true
+        });
 
     if (updateError) {
         console.error("Error Update Select:", signedError);
     } else {
         console.log("Files Update Select successfully:", updatedata);
+        return Word;
     }
 }
 

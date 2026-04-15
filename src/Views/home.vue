@@ -14,6 +14,10 @@ export default {
         async handleInitPage() {
             if( this.lien ==""){
                 this.lien = await initPage();
+                if (this.lien=="") {
+                    alert("probleme recuperation")
+                    return this.lienActif;
+                }
             }
             this.lienActif =  this.lien;
             return this.lien;
@@ -21,7 +25,7 @@ export default {
 
         async handleHelp() {
             this.lienActif = "/public/asset/pdf.pdf";
-            return this.this.lienActif;
+            return this.lienActif;
         },
     },
     async mounted() {
