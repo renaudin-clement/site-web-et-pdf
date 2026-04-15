@@ -3,7 +3,9 @@ import { initPage} from "../utils/supabaseObtentionPdf";
 export default {
     data() {
         return {
+            lienActif:"/public/asset/pdf.pdf",
             lien:"",
+            backuplien:"",
         };
     },
     methods: {
@@ -11,9 +13,19 @@ export default {
 
         async handleInitPage() {
             if( this.lien ==""){
-                return this.lien = await initPage();
+                this.lien = await initPage();
+                if (this.lien=="") {
+                    alert("probleme recuperation")
+                    return this.lienActif;
+                }
             }
+            this.lienActif =  this.lien;
             return this.lien;
+        },
+
+        async handleHelp() {
+            this.lienActif = "/public/asset/pdf.pdf";
+            return this.lienActif;
         },
     },
     async mounted() {
@@ -23,21 +35,14 @@ export default {
 
 <template>
     <div class="container">
-        <iframe src="/public/asset/pdf.pdf"></iframe>
-    </div>
-    <div class="error" id="error" style="visibility: hidden;">
-        <img id="errorimg2" src="/travailleur-plat-cle.png" alt="travailleur">
-        <p id="errortext"></p>
-        <img id="errorimg1" src="/travailleur-plat-cle.png" alt="travailleur">
+        <iframe :src="this.lienActif"></iframe>
     </div>
     <section class="separateur">
-        <RouterLink to="/aut">autentification</RouterLink>
         <RouterLink to="/document">document</RouterLink>
-
         <section>
             <button class="button-15" @click="handleInitPage()" role="button">Charger</button>
-            <button class="button-15" role="button">Aide 15</button>
-            <button class="button-15" role="button">Button 15</button>
+            <button class="button-15" @click="handleHelp()" role="button">Aide 15</button>
+            <RouterLink tag="button" class="button-15" role="button" to="/aut">déconnexion</RouterLink>
         </section>
     </section>
 </template>
