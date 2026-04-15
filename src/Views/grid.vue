@@ -11,14 +11,14 @@ export default {
             lien: "public/elecr.pdf",
             nameSelect: "",
             appliquer: "",
-            listChecboxValide:[],
+            listChecboxValide: [],
             fichieracreer: null,
         };
     },
     components: {
         document
     },
-    emits:['checkers'],
+    emits: ['checkers'],
     methods: {
         Ajouter,
         Supprimer,
@@ -50,21 +50,25 @@ export default {
             console.log([...e.dataTransfer.files]);
         },
 
-        SelectCheckbox(name){
+        SuppAjout(){
+            this.fichieracreer=null;
+        },
+
+        SelectCheckbox(name) {
             console.log("avant :" + this.listChecboxValide);
-            if(this.listChecboxValide.includes(name)){
+            if (this.listChecboxValide.includes(name)) {
                 let place = this.listChecboxValide.indexOf(name);
                 this.listChecboxValide.splice(place, 1);
-            }else{
+            } else {
                 this.listChecboxValide.push(name);
             }
-            console.log("apres :" +this.listChecboxValide);
+            console.log("apres :" + this.listChecboxValide);
         },
     },
     async mounted() {
         this.nomPdf = await refreshlist();
         console.log(this.nomPdf)
-        
+
         this.appliquer = await GetSelected();
     }
 };
@@ -88,7 +92,13 @@ export default {
                     <section>
                         <p>Fichier Deposer</p>
                         <img class="petitimage" src="/public/pdf_file.png" alt="document PDF">
-                        <p v-if="this.fichieracreer != null">{{ this.fichieracreer.name }}</p>
+                        <section class="section_ajout" v-if="this.fichieracreer != null">
+                            <p>{{ this.fichieracreer.name }} </p>
+                            <button @click="SuppAjout" class="croix" type="button">
+                                <img @click="SuppAjout" src="/src/assets/img/X.png" alt="X">
+                            </button>
+                        </section>
+
                     </section>
                     <section>
                         <p>Fichier Appliqué</p>
@@ -98,14 +108,23 @@ export default {
                 </section>
 
                 <section class="sectbutton">
-                    <button class="button-14 button-s" role="button" :disabled="(this.listChecboxValide.length>1 || this.listChecboxValide.length<=0)" type="button">valider</button>
-                    <button class="button-15 button-s" role="button" :disabled='(this.fichieracreer == null || this.fichieracreer=="")' type="button" @click="handleAjouter()">ajouter</button>
-                    <button class="button-16 button-s" role="button" :disabled="this.listChecboxValide.length==0 || this.listChecboxValide.length<0" type="button" @click="handleSupprimer()">supprimer</button>
-                    <button class="button-17 button-s" role="button" :disabled='((this.fichieracreer == null || this.fichieracreer=="") && (this.listChecboxValide.length==0 || this.listChecboxValide.length<0))' type="button">Annuler</button>
+                    <button class="button-14 button-s" role="button"
+                        :disabled="(this.listChecboxValide.length > 1 || this.listChecboxValide.length <= 0)"
+                        type="button">valider</button>
+                    <button class="button-15 button-s" role="button"
+                        :disabled='(this.fichieracreer == null || this.fichieracreer == "")' type="button"
+                        @click="handleAjouter()">ajouter</button>
+                    <button class="button-16 button-s" role="button"
+                        :disabled="this.listChecboxValide.length == 0 || this.listChecboxValide.length < 0"
+                        type="button" @click="handleSupprimer()">supprimer</button>
+                    <button class="button-17 button-s" role="button"
+                        :disabled='((this.fichieracreer == null || this.fichieracreer == "") && (this.listChecboxValide.length == 0 || this.listChecboxValide.length < 0))'
+                        type="button">Annuler</button>
                 </section>
             </section>
             <div class="wrapper scroller">
-                <document @checkers="SelectCheckbox" :place="nomPdf.indexOf(item)" :name="item.name" v-for="item in nomPdf" />
+                <document @checkers="SelectCheckbox" :place="nomPdf.indexOf(item)" :name="item.name"
+                    v-for="item in nomPdf" />
             </div>
 
         </form>
@@ -239,6 +258,34 @@ export default {
 .button-17:disabled {
     cursor: default;
     opacity: .3;
+}
+
+.croix {
+    background-color: rgba(255, 255, 255, 0);
+    font-size: initial;
+    padding: 0em;
+    margin: 0em;
+}
+
+.section_ajout {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    padding-left: 1em;
+    padding-right: 1em;
+    justify-content: start;
+    text-align: left;
+}
+
+.section_ajout>p {
+    max-width: fit-content;
+    padding-right: 1em;
+    align-content: center;
+    color: #FFFFFF;
+}
+
+.section_ajout>button>img {
+    width: 2em;
 }
 
 .chargment {
