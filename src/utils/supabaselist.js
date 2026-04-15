@@ -1,5 +1,5 @@
 export * from "./connectionSupabase.js";
-import {supabase} from "./connectionSupabase.js";
+import { supabase } from "./connectionSupabase.js";
 
 export async function refreshlist() {
   console.log("liste en cours :");
@@ -11,19 +11,19 @@ export async function refreshlist() {
   } else {
     console.log("liste des fichier : ", listedocument);
 
-    if (listedocument[0].name == ".emptyFolderPlaceholder"){
-        listedocument.splice(0, 1);
+    if (listedocument[0].name == ".emptyFolderPlaceholder") {
+      listedocument.splice(0, 1);
     }
 
     return listedocument;
   }
-  
+
 }
 
 export async function Ajouter(file) {
   console.log("le ficher :" + file);
   let { data: Ajoutdocument, error: signedError } = await supabase.storage.from('pdf').upload('PDFstocker/' + file.name, file);
-  
+
   if (signedError) {
     console.error("Error ajouter files:", signedError);
   } else {
@@ -31,24 +31,35 @@ export async function Ajouter(file) {
   }
 }
 
-export async function Supprimer(nom) {
-  console.log(nom);
-  const { data, error } = await supabase.storage.from('pdf').remove(['PDFstocker/' + nom]);
-  
-  if(data.length == 0){
-    console.error("impossible de supprimer un fichier qui n'existe pas : vous avez selectionner \""+nom+"\"");
+export async function Supprimer(ListNom) {
+
+  console.log("liste a supp : " + ListNom);
+  let lieusupp = 'PDFstocker/';
+  let suppPart = [];
+
+  for (let nom_fichier in ListNom) {
+
+    suppPart.push(lieusupp+ListNom[nom_fichier]);
   }
 
-  if (error) {
-    console.error("Error removing files:", error);
-  } else {
-    console.log("Files removed successfully:", data);
-  }
+  console.log(suppPart);
+  
+  let { data, error } = await supabase.storage.from('pdf').remove(suppPart);
+    if (data.length == 0) {
+      console.error("impossible de supprimer si aucun des fichier existe");
+    }
+
+    if (error) {
+      console.error("Error removing files:", error);
+    } else {
+      console.log("Files removed successfully:", data);
+    }
+
 }
 
 export async function UpdateFile(file) {
   console.log("le ficher :" + file);
-  let { data:updatedata, error: updateError } = await supabase.storage.from('pdf').update('PDFstocker/' + file.name, file);
+  let { data: updatedata, error: updateError } = await supabase.storage.from('pdf').update('PDFstocker/' + file.name, file);
 
   if (updateError) {
     console.error("Error Update files:", signedError);

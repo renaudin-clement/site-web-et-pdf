@@ -14,7 +14,7 @@ export default {
   emits:['checkers'],
   methods: {
     handelcheckBox(){
-      this.$emit('checkers',"checkbox_"+this.place)
+      this.$emit('checkers',this.name)
     },
 
   },

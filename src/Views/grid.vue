@@ -9,7 +9,6 @@ export default {
             nomPdf: [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
             nbtotal: 0,
             lien: "public/elecr.pdf",
-            nameSelect: "",
             appliquer: "",
             listChecboxValide: [],
             fichieracreer: null,
@@ -43,7 +42,7 @@ export default {
         },
 
         async handleSupprimer() {
-            await Supprimer(this.nameSelect);
+            await Supprimer(this.listChecboxValide);
             this.nomPdf = await refreshlist();
         },
         onDrop(e) {
@@ -56,12 +55,14 @@ export default {
 
         SelectCheckbox(name) {
             console.log("avant :" + this.listChecboxValide);
+
             if (this.listChecboxValide.includes(name)) {
                 let place = this.listChecboxValide.indexOf(name);
                 this.listChecboxValide.splice(place, 1);
             } else {
                 this.listChecboxValide.push(name);
             }
+            
             console.log("apres :" + this.listChecboxValide);
         },
     },
