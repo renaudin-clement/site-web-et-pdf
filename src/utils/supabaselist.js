@@ -10,6 +10,11 @@ export async function refreshlist() {
     return [];
   } else {
     console.log("liste des fichier : ", listedocument);
+
+    if (listedocument[0].name == ".emptyFolderPlaceholder"){
+        listedocument.splice(0, 1);
+    }
+
     return listedocument;
   }
   

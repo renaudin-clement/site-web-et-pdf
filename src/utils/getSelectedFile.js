@@ -13,7 +13,12 @@ export async function GetSelected() {
     }
 
     console.log(signedData.signedUrl);
-    return signedData.signedUrl;
+
+    let response = await fetch(signedData.signedUrl);
+    const text = await response.text();
+
+    console.log(text);
+    return text;
 }
 
 

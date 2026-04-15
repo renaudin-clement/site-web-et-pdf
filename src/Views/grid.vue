@@ -11,12 +11,14 @@ export default {
             lien: "public/elecr.pdf",
             nameSelect: "",
             appliquer: "",
+            listChecboxValide:[],
             fichieracreer: null,
         };
     },
     components: {
         document
     },
+    emits:['checkers'],
     methods: {
         Ajouter,
         Supprimer,
@@ -31,8 +33,8 @@ export default {
                 console.log(this.fichieracreer);
                 console.log(file.name);
             }
-
         },
+
         async handleAjouter() {
             console.log(this.fichieracreer);
             await Ajouter(this.fichieracreer);
@@ -47,9 +49,22 @@ export default {
         onDrop(e) {
             console.log([...e.dataTransfer.files]);
         },
+
+        SelectCheckbox(name){
+            console.log("avant :" + this.listChecboxValide);
+            if(this.listChecboxValide.includes(name)){
+                let place = this.listChecboxValide.indexOf(name);
+                this.listChecboxValide.splice(place, 1);
+            }else{
+                this.listChecboxValide.push(name);
+            }
+            console.log("apres :" +this.listChecboxValide);
+        },
     },
     async mounted() {
         this.nomPdf = await refreshlist();
+        console.log(this.nomPdf)
+        
         this.appliquer = await GetSelected();
     }
 };
@@ -83,16 +98,14 @@ export default {
                 </section>
 
                 <section class="sectbutton">
-                    <button class="button-14 button-s" role="button" type="button">valider</button>
-                    <button class="button-15 button-s" role="button" type="button"
-                        @click="handleAjouter()">ajouter</button>
-                    <button class="button-16 button-s" role="button" type="button"
-                        @click="handleSupprimer()">supprimer</button>
-                    <button class="button-17 button-s" role="button" type="button">Annuler</button>
+                    <button class="button-14 button-s" role="button" :disabled="(this.listChecboxValide.length>1 || this.listChecboxValide.length<=0)" type="button">valider</button>
+                    <button class="button-15 button-s" role="button" :disabled='(this.fichieracreer == null || this.fichieracreer=="")' type="button" @click="handleAjouter()">ajouter</button>
+                    <button class="button-16 button-s" role="button" :disabled="this.listChecboxValide.length==0 || this.listChecboxValide.length<0" type="button" @click="handleSupprimer()">supprimer</button>
+                    <button class="button-17 button-s" role="button" :disabled='((this.fichieracreer == null || this.fichieracreer=="") && (this.listChecboxValide.length==0 || this.listChecboxValide.length<0))' type="button">Annuler</button>
                 </section>
             </section>
             <div class="wrapper scroller">
-                <document :place="nomPdf.indexOf(item)" :name="item.name" v-for="item in nomPdf" />
+                <document @checkers="SelectCheckbox" :place="nomPdf.indexOf(item)" :name="item.name" v-for="item in nomPdf" />
             </div>
 
         </form>
