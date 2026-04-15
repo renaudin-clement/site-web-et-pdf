@@ -10,7 +10,7 @@ export default {
     };
   },
 
-  props: ['place','name'],
+  props: ['place','name','isActive'],
   emits:['checkers'],
   methods: {
     handelcheckBox(){
@@ -36,7 +36,7 @@ export default {
       <p>{{this.name}}</p>
       <img src="/public/pdf_file.png" alt="document PDF">
       <div>
-        <input class="checkbox" type="checkbox" :id='"checkbox_"+this.place' @change="handelcheckBox()" :name='"checkbox_"+this.place' id="">
+        <input class="checkbox" type="checkbox" :id='"checkbox_"+this.place' @change="handelcheckBox()" :name='"checkbox_"+this.place' id="" :checked="isActive">
       </div>
     </label>
   </li>

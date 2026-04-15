@@ -20,14 +20,20 @@ export async function refreshlist() {
 
 }
 
-export async function Ajouter(file) {
-  console.log("le ficher :" + file);
-  let { data: Ajoutdocument, error: signedError } = await supabase.storage.from('pdf').upload('PDFstocker/' + file.name, file);
 
-  if (signedError) {
-    console.error("Error ajouter files:", signedError);
-  } else {
-    console.log("Files ajouter successfully:", Ajoutdocument);
+export async function Ajouter(Listfiles) {
+  console.log("les fichers son en cours de televersement :" + Listfiles);
+
+  for (let file of Listfiles) {
+    let { data: Ajoutdocument, error: signedError } = await supabase.storage.from('pdf').upload('PDFstocker/' + file.name, file,{
+    upsert: true
+  });
+
+    if (signedError) {
+      console.error("Error ajouter files:",file.name, signedError);
+    } else {
+      console.log("Files ajouter successfully:",file.name, Ajoutdocument);
+    }
   }
 }
 
@@ -39,21 +45,21 @@ export async function Supprimer(ListNom) {
 
   for (let nom_fichier in ListNom) {
 
-    suppPart.push(lieusupp+ListNom[nom_fichier]);
+    suppPart.push(lieusupp + ListNom[nom_fichier]);
   }
 
   console.log(suppPart);
-  
-  let { data, error } = await supabase.storage.from('pdf').remove(suppPart);
-    if (data.length == 0) {
-      console.error("impossible de supprimer si aucun des fichier existe");
-    }
 
-    if (error) {
-      console.error("Error removing files:", error);
-    } else {
-      console.log("Files removed successfully:", data);
-    }
+  let { data, error } = await supabase.storage.from('pdf').remove(suppPart);
+  if (data.length == 0) {
+    console.error("impossible de supprimer si aucun des fichier existe");
+  }
+
+  if (error) {
+    console.error("Error removing files:", error);
+  } else {
+    console.log("Files removed successfully:", data);
+  }
 
 }
 

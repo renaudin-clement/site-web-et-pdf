@@ -6,10 +6,11 @@ import { GetSelected, UpdateFile } from "../utils/getSelectedFile.js";
 export default {
     data() {
         return {
-            nomPdf: [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+            nomPdf: [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16, 17, 18],
             nbtotal: 0,
             lien: "public/elecr.pdf",
             appliquer: "",
+            isDragging: false,
             listChecboxValide: [],
             fichieracreer: null,
         };
@@ -26,11 +27,11 @@ export default {
         UpdateFile,
 
         handleFileChange(event) {
-            const file = event.target.files?.[0];
-            if (file) {
-                this.fichieracreer = file;
+            let Listfile =[]
+            Listfile = event.target.files;
+            if (Listfile) {
+                this.fichieracreer = Listfile;
                 console.log(this.fichieracreer);
-                console.log(file.name);
             }
         },
 
@@ -52,12 +53,21 @@ export default {
             this.nomPdf = await refreshlist();
         },
 
-        onDrop(e) {
-            console.log([...e.dataTransfer.files]);
+        onDrop(event) {
+            this.isDragging = false;
+            const droppedFiles = Array.from(event.dataTransfer.files);
+            this.fichieracreer = droppedFiles;
+            console.log(droppedFiles);
         },
 
         SuppAjout(){
             this.fichieracreer=null;
+        },
+
+        Annuler(){
+            this.SuppAjout();
+            this.listChecboxValide=[];
+            console.log(this.listChecboxValide);
         },
 
         SelectCheckbox(name) {
@@ -76,7 +86,6 @@ export default {
     async mounted() {
         this.nomPdf = await refreshlist();
         console.log(this.nomPdf)
-
         this.appliquer = await GetSelected();
     }
 };
@@ -90,9 +99,9 @@ export default {
 
                 <h2>DOC DOC</h2>
                 <section class="drop">
-                    <label id="drop-zone" @drop.prevent="onDrop">
+                    <label id="drop-zone" @drop.prevent="onDrop"  @dragover.prevent="isDragging = true" @dragleave="isDragging = false" :class="{ active: isDragging }">
                         Drop images here, or click to upload.
-                        <input type="file" id="fileInput2" @change="handleFileChange" ref="fichiercreer"
+                        <input type="file" id="fileInput2" @change="handleFileChange" multiple ref="fichiercreer"
                             accept="application/pdf">
                     </label>
                 </section>
@@ -101,7 +110,7 @@ export default {
                         <p>Fichier Deposer</p>
                         <img class="petitimage" src="/public/pdf_file.png" alt="document PDF">
                         <section class="section_ajout" v-if="this.fichieracreer != null">
-                            <p>{{ this.fichieracreer.name }} </p>
+                            <p>{{ "fichier total a ajouter " + this.fichieracreer.length }} </p>
                             <button @click="SuppAjout" class="croix" type="button">
                                 <img @click="SuppAjout" src="/src/assets/img/X.png" alt="X">
                             </button>
@@ -112,6 +121,7 @@ export default {
                         <p>Fichier Appliqué</p>
                         <img class="petitimage" src="/public/pdf_file.png" alt="document PDF">
                         <p>{{ this.appliquer }}</p>
+                        <img v-if="!this.nomPdf.some(file => file.name === this.appliquer)"  class="petitimage" src="/public/attention.png" alt="document PDF">
                     </section>
                 </section>
 
@@ -126,13 +136,12 @@ export default {
                         :disabled="this.listChecboxValide.length == 0 || this.listChecboxValide.length < 0"
                         type="button" @click="handleSupprimer()">supprimer</button>
                     <button class="button-17 button-s" role="button"
-                        :disabled='((this.fichieracreer == null || this.fichieracreer == "") && (this.listChecboxValide.length == 0 || this.listChecboxValide.length < 0))'
-                        type="button">Annuler</button>handleUpdateFile
+                        @click="Annuler()" :disabled='((this.fichieracreer == null || this.fichieracreer == "") && (this.listChecboxValide.length == 0 || this.listChecboxValide.length < 0))'
+                        type="button">Annuler</button>
                 </section>
             </section>
             <div class="wrapper scroller">
-                <document @checkers="SelectCheckbox" :place="nomPdf.indexOf(item)" :name="item.name"
-                    v-for="item in nomPdf" />
+                <document @checkers="SelectCheckbox" :place="nomPdf.indexOf(item)" :name="item.name" :isActive="listChecboxValide.includes(item.name)" v-for="item in nomPdf" />
             </div>
 
         </form>
@@ -180,6 +189,17 @@ export default {
     border-radius: 4px;
     color: slategray;
     cursor: pointer;
+}
+
+#drop-zone.active {
+    border-color: #4CAF50;
+    background-color: #f0fff4;
+    color: #2e7d32;
+    transform: scale(1.01);
+}
+
+#drop-zone[data-v-5a59b4d9]:hover {
+    border-color: #999;
 }
 
 #fileInput2 {
