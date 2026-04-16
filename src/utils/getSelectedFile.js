@@ -1,11 +1,16 @@
-export * from "./connectionSupabase.js";
 import { supabase } from "./connectionSupabase.js";
+
+const code = localStorage.getItem("code")
 
 export async function GetSelected() {
     console.log("recuperation du fichier selectionner en cours :");
     const { data: signedData, error: signedError } = await supabase.storage
         .from('pdf')
-        .createSignedUrl('Select.txt', 3600);
+        .createSignedUrl('Select.txt', 3600, {
+            headers: {
+                code: code
+            }
+        });
 
     if (signedError) {
         console.error('Erreur signed URL:', signedError.message);
@@ -23,17 +28,19 @@ export async function GetSelected() {
 
 
 export async function UpdateFile(Word) {
-
-   
     const newFile = new Blob([Word], {
         type: "text/plain"
     })
 
-    const { data:updatedata, error:updateError } = await supabase.storage
+    const { data: updatedata, error: updateError } = await supabase.storage
         .from('pdf')
         .update('Select.txt', newFile, {
             contentType: "text/plain",
-            upsert: true
+            upsert: true,
+            headers: {
+                code: code
+            }
+
         });
 
     if (updateError) {

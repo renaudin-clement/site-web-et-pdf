@@ -11,9 +11,8 @@ import Document from './Views/grid.vue'
 
 
 const routes = [
-  { path: '/', component:  Home},
+  { path: '/', component:  Aunth},
   { path: '/home', component:  Home},
-  { path: '/aut', component: Aunth },
   { path: '/document', component:  Document},
   { path: '/error', component: Aunth },
 ]
