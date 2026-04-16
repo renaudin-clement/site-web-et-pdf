@@ -149,7 +149,7 @@ export default {
 
     <nav class="separateur">
         <RouterLink tag="button" class="button-14" role="button" to="/home">home</RouterLink>
-        <RouterLink tag="button" class="button-15" role="button" to="/aut">déconnexion</RouterLink>
+        <RouterLink tag="button" class="button-15" role="button" to="/">déconnexion</RouterLink>
     </nav>
 </template>
 

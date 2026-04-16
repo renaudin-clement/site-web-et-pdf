@@ -1,25 +1,31 @@
 import { supabase } from "./connectionSupabase.js";
 
-const code = localStorage.getItem("code")
+const code = localStorage.getItem("code");
+console.log(localStorage.getItem("code"));
 
 export async function GetSelected() {
-    console.log("recuperation du fichier selectionner en cours :");
-    const { data: signedData, error: signedError } = await supabase.storage
-        .from('pdf')
-        .createSignedUrl('Select.txt', 3600, {
-            headers: {
-                code: code
-            }
-        });
+    console.log("récupération fichier...")
+    console.log(code);
+    const { data: valid } = await supabase.rpc("check_access_code", {
+        input_code: code
+    })
 
-    if (signedError) {
-        console.error('Erreur signed URL:', signedError.message);
-        return;
+    if (!valid) {
+        console.error("Code invalide")
+        return
     }
 
-    console.log(signedData.signedUrl);
+    const { data:signedData, error } = await supabase.storage
+        .from("pdf")
+        .createSignedUrl("Select.txt", 3600)
+
+    if (error) {
+        console.error(error.message)
+        return
+    }
 
     let response = await fetch(signedData.signedUrl);
+    console.log(response);
     const text = await response.text();
 
     console.log(text);
@@ -44,7 +50,7 @@ export async function UpdateFile(Word) {
         });
 
     if (updateError) {
-        console.error("Error Update Select:", signedError);
+        console.error("Error Update Select:", updatedata);
     } else {
         console.log("Files Update Select successfully:", updatedata);
         return Word;

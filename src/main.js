@@ -3,9 +3,9 @@ import { createMemoryHistory, createRouter } from 'vue-router'
 import { createApp } from 'vue'
 import App from './App.vue'
 
-import Aunth from './Views/authentification.vue'
-import Home from './Views/home.vue'
-import Document from './Views/grid.vue'
+import Aunth from '@/Views/authentification.vue'
+import Home from '@/Views/home.vue'
+import Document from '@/Views/grid.vue'
 
 
 

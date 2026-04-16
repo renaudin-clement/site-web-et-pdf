@@ -42,7 +42,7 @@ export default {
         <section>
             <button class="button-15" @click="handleInitPage()" role="button">Charger</button>
             <button class="button-15" @click="handleHelp()" role="button">Aide 15</button>
-            <RouterLink tag="button" class="button-15" role="button" to="/aut">déconnexion</RouterLink>
+            <RouterLink tag="button" class="button-15" role="button" to="/">déconnexion</RouterLink>
         </section>
     </section>
 </template>

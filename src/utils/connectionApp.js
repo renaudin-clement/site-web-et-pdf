@@ -45,6 +45,8 @@ export async function connectionV2(MDP) {
         return "code invalide";
     }
     console.log(ok)
+    localStorage.setItem("code", MDP);
+    console.log(localStorage);
     return("ok");
 
 }
