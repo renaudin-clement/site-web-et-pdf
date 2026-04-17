@@ -2,7 +2,7 @@
 import { AuthInvalidCredentialsError, createClient } from '@supabase/supabase-js';
 
 console.log("test");
-const supabaseUrl = import.meta.env.VITE_DATABASE_URL
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
 const supabaseKey = import.meta.env.VITE_DATABASE_KEY
 
 if (!supabaseUrl || !supabaseKey) {

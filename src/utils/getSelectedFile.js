@@ -4,34 +4,23 @@ const code = localStorage.getItem("code");
 console.log(localStorage.getItem("code"));
 
 export async function GetSelected() {
-    console.log("récupération fichier...")
-    console.log(code);
-    const { data: valid } = await supabase.rpc("check_access_code", {
-        input_code: code
-    })
 
-    if (!valid) {
-        console.error("Code invalide")
+    const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/smooth-function`,
+        {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ code }),
+        }
+    );
+
+    if (!response.ok) {
+        console.error("Erreur:", await response.text())
         return
     }
 
-    const { data:signedData, error } = await supabase.storage
-        .from("pdf")
-        .createSignedUrl("Select.txt", 3600)
-
-    if (error) {
-        console.error(error.message)
-        return
-    }
-
-    let response = await fetch(signedData.signedUrl);
-    console.log(response);
-    const text = await response.text();
-
-    console.log(text);
-    return text;
+    return await response.text();
 }
-
 
 export async function UpdateFile(Word) {
     const newFile = new Blob([Word], {
