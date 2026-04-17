@@ -1,22 +1,27 @@
-export * from "./connectionSupabase.js";
-import {supabase} from "./connectionSupabase.js";
-import {GetSelected} from "./getSelectedFile.js";
+import { supabase } from "./connectionSupabase.js";
+import { GetSelected } from "./getSelectedFile.js";
 
 export async function initPage() {
+  let selection = await GetSelected();
+  const code = localStorage.getItem("code");
 
-  let selection =await GetSelected();
+  const path = "PDFstocker/" + selection;
 
-  console.log(selection);
+  const response = await fetch(
+    `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/get-signed-pdf-url`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ code, bucket: "pdf", path, expiresIn: 3600 }),
+    }
+  );
 
-  const { data: signedData, error: signedError } = await supabase.storage
-    .from('pdf')
-    .createSignedUrl('PDFstocker/'+selection, 3600);
-
-  if (signedError) {
-    console.error('Erreur signed URL:', signedError.message);
-    return"";
+  if (!response.ok) {
+    console.error("Erreur:", await response.text());  
+    return "";
   }
 
-  console.log(signedData.signedUrl);
-  return signedData.signedUrl;
+  const { signedUrl } = await response.json();
+  console.log(signedUrl);
+  return signedUrl;
 }

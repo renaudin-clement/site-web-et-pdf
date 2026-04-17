@@ -8,7 +8,7 @@ export default {
         return {
             nomPdf: [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16, 17, 18],
             nbtotal: 0,
-            lien: "public/elecr.pdf",
+            lien: "src/assets/pdf/elecr.pdf",
             appliquer: "",
             isDragging: false,
             listChecboxValide: [],
@@ -108,7 +108,7 @@ export default {
                 <section class="chargment">
                     <section>
                         <p>Fichier Deposer</p>
-                        <img class="petitimage" src="/public/pdf_file.png" alt="document PDF">
+                        <img class="petitimage" src="/src/assets/img/pdf_file.png" alt="document PDF">
                         <section class="section_ajout" v-if="this.fichieracreer != null">
                             <p>{{ "fichier total a ajouter " + this.fichieracreer.length }} </p>
                             <button @click="SuppAjout" class="croix" type="button">
@@ -119,9 +119,9 @@ export default {
                     </section>
                     <section>
                         <p>Fichier Appliqué</p>
-                        <img class="petitimage" src="/public/pdf_file.png" alt="document PDF">
+                        <img class="petitimage" src="/src/assets/img/pdf_file.png" alt="document PDF">
                         <p>{{ this.appliquer }}</p>
-                        <img v-if="!this.nomPdf.some(file => file.name === this.appliquer)"  class="petitimage" src="/public/attention.png" alt="document PDF">
+                        <img v-if="!this.nomPdf.some(file => file.name === this.appliquer)"  class="petitimage" src="/src/assets/img/attention.png" alt="document PDF">
                     </section>
                 </section>
 
@@ -149,7 +149,7 @@ export default {
 
     <nav class="separateur">
         <RouterLink tag="button" class="button-14" role="button" to="/home">home</RouterLink>
-        <RouterLink tag="button" class="button-15" role="button" to="/aut">déconnexion</RouterLink>
+        <RouterLink tag="button" class="button-15" role="button" to="/">déconnexion</RouterLink>
     </nav>
 </template>
 

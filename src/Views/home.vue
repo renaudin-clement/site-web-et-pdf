@@ -3,7 +3,7 @@ import { initPage} from "../utils/supabaseObtentionPdf";
 export default {
     data() {
         return {
-            lienActif:"/public/asset/pdf.pdf",
+            lienActif:"src/assets/pdf/pdf.pdf",
             lien:"",
             backuplien:"",
         };
@@ -24,7 +24,7 @@ export default {
         },
 
         async handleHelp() {
-            this.lienActif = "/public/asset/pdf.pdf";
+            this.lienActif = "src/assets/pdf/pdf.pdf";
             return this.lienActif;
         },
     },
@@ -42,7 +42,7 @@ export default {
         <section>
             <button class="button-15" @click="handleInitPage()" role="button">Charger</button>
             <button class="button-15" @click="handleHelp()" role="button">Aide 15</button>
-            <RouterLink tag="button" class="button-15" role="button" to="/aut">déconnexion</RouterLink>
+            <RouterLink tag="button" class="button-15" role="button" to="/">déconnexion</RouterLink>
         </section>
     </section>
 </template>

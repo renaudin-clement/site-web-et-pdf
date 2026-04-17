@@ -1,5 +1,6 @@
-export * from "./connectionSupabase.js";
 import { supabase } from "./connectionSupabase.js";
+
+const code = localStorage.getItem("code")
 
 export async function refreshlist() {
   console.log("liste en cours :");
@@ -25,14 +26,17 @@ export async function Ajouter(Listfiles) {
   console.log("les fichers son en cours de televersement :" + Listfiles);
 
   for (let file of Listfiles) {
-    let { data: Ajoutdocument, error: signedError } = await supabase.storage.from('pdf').upload('PDFstocker/' + file.name, file,{
-    upsert: true
-  });
+    let { data: Ajoutdocument, error: signedError } = await supabase.storage.from('pdf').upload('PDFstocker/' + file.name, file, {
+      upsert: true,
+      headers: {
+        code: code
+      }
+    });
 
     if (signedError) {
-      console.error("Error ajouter files:",file.name, signedError);
+      console.error("Error ajouter files:", file.name, signedError);
     } else {
-      console.log("Files ajouter successfully:",file.name, Ajoutdocument);
+      console.log("Files ajouter successfully:", file.name, Ajoutdocument);
     }
   }
 }
@@ -50,7 +54,11 @@ export async function Supprimer(ListNom) {
 
   console.log(suppPart);
 
-  let { data, error } = await supabase.storage.from('pdf').remove(suppPart);
+  let { data, error } = await supabase.storage.from('pdf').remove(suppPart, {
+    headers: {
+      code: code
+    }
+  });
   if (data.length == 0) {
     console.error("impossible de supprimer si aucun des fichier existe");
   }
@@ -65,7 +73,11 @@ export async function Supprimer(ListNom) {
 
 export async function UpdateFile(file) {
   console.log("le ficher :" + file);
-  let { data: updatedata, error: updateError } = await supabase.storage.from('pdf').update('PDFstocker/' + file.name, file);
+  let { data: updatedata, error: updateError } = await supabase.storage.from('pdf').update('PDFstocker/' + file.name, file, {
+    headers: {
+      code: code
+    }
+  });
 
   if (updateError) {
     console.error("Error Update files:", signedError);
@@ -74,9 +86,5 @@ export async function UpdateFile(file) {
   }
 }
 
-
-export function Enregistrer() {
-
-}
 
 
