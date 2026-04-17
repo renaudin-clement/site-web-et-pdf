@@ -42,6 +42,8 @@ export async function connectionV2(MDP) {
 
     if (ok == false) {
         console.log("code invalide");
+        localStorage.setItem("code", MDP);
+        console.log(localStorage);
         return "code invalide";
     }
     console.log(ok)
