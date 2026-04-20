@@ -10,8 +10,6 @@ if (!supabaseUrl || !supabaseKey) {
 }
 
 export const supabase = createClient(supabaseUrl, supabaseKey)
-
-console.log(supabase);
 if (supabase == null) {
   console.error('Erreur connexion:');
 }

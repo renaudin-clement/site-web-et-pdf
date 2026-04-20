@@ -4,7 +4,6 @@ import { supabase } from "./connectionSupabase.js";
 
 export async function connection(MDP) {
     let error = "";
-    console.log(MDP);
     const { data, error: err } = await supabase
         .from("access_codes")
         .select("*")
@@ -12,7 +11,7 @@ export async function connection(MDP) {
         .eq("is_active", true)
         .single()
     if (err || !data) {
-        error = "Code invalide ❌"
+        error = "erreur c ❌"
         console.log(err);
         return error;
     }
@@ -41,14 +40,12 @@ export async function connectionV2(MDP) {
         .rpc("check_access_code", { input_code: MDP })
 
     if (ok == false) {
-        console.log("code invalide");
+        console.log("erreur c");
         localStorage.setItem("code", MDP);
-        console.log(localStorage);
-        return "code invalide";
+        return "erreur c";
     }
     console.log(ok)
     localStorage.setItem("code", MDP);
-    console.log(localStorage);
     return("ok");
 
 }

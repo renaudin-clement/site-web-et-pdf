@@ -1,7 +1,6 @@
 import { supabase } from "./connectionSupabase.js";
 
 const code = localStorage.getItem("code");
-console.log(localStorage.getItem("code"));
 
 export async function GetSelected() {
 
@@ -45,7 +44,7 @@ export async function UpdateFile(Word) {
   }
 
   const result = await response.json();
-  console.log("Files Update Select successfully:", result);
+  //console.log("Files Update Select successfully:", result);
   return Word;
 }
 

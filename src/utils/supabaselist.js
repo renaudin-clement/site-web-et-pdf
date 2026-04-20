@@ -116,9 +116,7 @@ export async function UpdateFile(file) {
   }
 
   const result = await response.json();
-
   console.log("File updated successfully:", result);
-
   return result;
 }
 

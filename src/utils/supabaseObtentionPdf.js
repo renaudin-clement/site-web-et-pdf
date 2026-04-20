@@ -22,6 +22,5 @@ export async function initPage() {
   }
 
   const { signedUrl } = await response.json();
-  console.log(signedUrl);
   return signedUrl;
 }
