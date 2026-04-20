@@ -23,27 +23,29 @@ export async function GetSelected() {
 }
 
 export async function UpdateFile(Word) {
-    const newFile = new Blob([Word], {
-        type: "text/plain"
-    })
+  const formData = new FormData();
+  const newFile = new Blob([Word], {
+    type: "text/plain"
+  });
 
-    const { data: updatedata, error: updateError } = await supabase.storage
-        .from('pdf')
-        .update('Select.txt', newFile, {
-            contentType: "text/plain",
-            upsert: true,
-            headers: {
-                code: code
-            }
+  formData.append("code", code);
+  formData.append("file", newFile, "Select.txt");
 
-        });
-
-    if (updateError) {
-        console.error("Error Update Select:", updatedata);
-    } else {
-        console.log("Files Update Select successfully:", updatedata);
-        return Word;
+  const response = await fetch(
+    `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/update-select`,
+    {
+      method: "POST",
+      body: formData
     }
-}
+  );
 
+  if (!response.ok) {
+    console.error("Error Update Select:", await response.text());
+    return;
+  }
+
+  const result = await response.json();
+  console.log("Files Update Select successfully:", result);
+  return Word;
+}
 

@@ -3,7 +3,7 @@ import { initPage} from "../utils/supabaseObtentionPdf";
 export default {
     data() {
         return {
-            lienActif:"src/assets/pdf/pdf.pdf",
+            lienActif:"src/assets/pdf/Guide_help.pdf",
             lien:"",
             backuplien:"",
         };
@@ -24,7 +24,7 @@ export default {
         },
 
         async handleHelp() {
-            this.lienActif = "src/assets/pdf/pdf.pdf";
+            this.lienActif = "src/assets/pdf/Guide_help.pdf";
             return this.lienActif;
         },
     },
