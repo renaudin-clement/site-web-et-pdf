@@ -85,7 +85,6 @@ export default {
     },
     async mounted() {
         this.nomPdf = await refreshlist();
-        console.log(this.nomPdf)
         this.appliquer = await GetSelected();
     }
 };
