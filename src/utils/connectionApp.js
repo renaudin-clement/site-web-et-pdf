@@ -59,9 +59,6 @@ export async function connectionV2(MDP) {
         localStorage.setItem("admin", true);
     }
 
-    console.log(localStorage.getItem("login"));
-    console.log(localStorage.getItem("admin"));
-
     localStorage.setItem("code", MDP);
     return("ok");
 

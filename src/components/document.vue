@@ -24,8 +24,6 @@ export default {
       this.ligne =0
     } 
     this.collones = this.place/3
-
-    console.log(this.place);
   }
 };
 </script>
