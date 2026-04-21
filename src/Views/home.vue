@@ -29,7 +29,7 @@ export default {
         },
 
         async handleHelp() {
-            this.lienActif = "src/assets/pdf/Guide_help.pdf";
+            this.lienActif = "/pdf/Guide_help.pdf";
             this.names = "Guide_help.pdf";
             return this.lienActif;
         },
