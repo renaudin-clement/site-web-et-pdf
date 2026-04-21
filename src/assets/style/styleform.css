@@ -48,6 +48,7 @@ button , a {
     font-family: Helvetica;
     width: fit-content;
     height: fit-content;
+    margin: 0.5em;
 }
 
 button:hover , a:hover  {
@@ -70,6 +71,9 @@ button:hover , a:hover  {
     background-image: url("/src/assets/img/gradient_2.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    margin-top: 3em;
+    margin-left: 3em;
+    margin-right: 3em;
 }
 
 

@@ -34,15 +34,17 @@ export default {
 </script>
 
 <template>
+    <header>
+        <RouterLink tag="button" class="button-15" role="button" to="/">déconnexion</RouterLink>
+    </header>
     <div class="container">
         <iframe :src="this.lienActif"></iframe>
     </div>
     <section class="separateur">
-        <RouterLink to="/document">document</RouterLink>
+        <RouterLink to="/document" class="document">document</RouterLink>
         <section>
             <button class="button-15" @click="handleInitPage()" role="button">Charger</button>
             <button class="button-15" @click="handleHelp()" role="button">Aide 15</button>
-            <RouterLink tag="button" class="button-15" role="button" to="/">déconnexion</RouterLink>
         </section>
     </section>
 </template>
