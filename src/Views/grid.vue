@@ -91,6 +91,11 @@ export default {
 </script>
 
 <template>
+
+    <header>
+        <RouterLink tag="button" class="button-15" role="button" to="/">déconnexion</RouterLink>
+    </header>
+
     <div class="container">
         <h1 style="font-size:4em">Gestion Document</h1>
         <form action="" class="gridforme">
@@ -148,7 +153,6 @@ export default {
 
     <nav class="separateur">
         <RouterLink tag="button" class="button-14" role="button" to="/home">home</RouterLink>
-        <RouterLink tag="button" class="button-15" role="button" to="/">déconnexion</RouterLink>
     </nav>
 </template>
 
