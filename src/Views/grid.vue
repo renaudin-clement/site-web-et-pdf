@@ -3,6 +3,8 @@ import document from '@/components/document.vue';
 import { refreshlist, Ajouter, Supprimer } from "../utils/supabaselist.js";
 import { GetSelected, UpdateFile } from "../utils/getSelectedFile.js";
 
+import {deconnexion } from "../utils/deconnexion.js";
+
 export default {
     data() {
         return {
@@ -25,6 +27,7 @@ export default {
         refreshlist,
         GetSelected,
         UpdateFile,
+        deconnexion,
 
         handleFileChange(event) {
             let Listfile =[]
@@ -93,7 +96,7 @@ export default {
 <template>
 
     <header>
-        <RouterLink tag="button" class="button-15" role="button" to="/">déconnexion</RouterLink>
+        <RouterLink tag="button" class="button-15" role="button" to="/" :click="deconnexion">déconnexion</RouterLink>
     </header>
 
     <div class="container">
@@ -349,6 +352,6 @@ export default {
 }
 
 .petitimage {
-    width: 2em;
+    width: 1.5em;
 }
 </style>

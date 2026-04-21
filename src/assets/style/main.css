@@ -10,10 +10,9 @@
   }
 
   .container{
-    position: relative;
     width: 100%;
-    height: 70%;
-    margin-top: auto !important;
+    height: 100%;
+    margin: auto !important;
   }
 
   input{

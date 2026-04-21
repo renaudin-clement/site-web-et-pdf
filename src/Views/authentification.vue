@@ -13,6 +13,10 @@ export default {
         recupcode,
         async testconnection() {
             this.error = await connectionV2(this.MDP);
+            let login = localStorage.getItem("login");
+            if (login == "true") {
+                this.$router.push({ name: 'home', query: { redirect: 'home' } });
+            }
         },
 
         async er(){
@@ -38,10 +42,7 @@ export default {
         </p>
     </div>
 
-    <nav class="separateur">
-        <RouterLink to="/home">home</RouterLink>
-        <RouterLink to="/document">document</RouterLink>
-    </nav>
+
 
 
 </template>

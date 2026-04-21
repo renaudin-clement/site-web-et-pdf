@@ -52,13 +52,13 @@ Mise en place de policie pour securiter
 
 
 ## TODO
-- UpdateFile  []  
-- Supprimer   []  
-- Ajouter     []  
-- refreshlist []  
-- nfc         []  
-- Qrcode      []  
-
+- UpdateFile    [X]  
+- Supprimer     [X]  
+- Ajouter       [X]  
+- refreshlist   [X]  
+- nfc           [ ]  
+- Qrcode        [X]  
+- Code et secu  [X]  
 
 
 ## 📄 Licence
