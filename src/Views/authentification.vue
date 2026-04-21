@@ -67,8 +67,6 @@ label {
 
 label input {
   font-size: 1em;
-  color: #f9f9f9;
-  background: transparent;
   padding: 1rem 1.2rem;
   width: 100%;
   border-radius: 5px;
