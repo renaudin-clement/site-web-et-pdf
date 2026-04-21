@@ -3,7 +3,7 @@ import { initPage} from "../utils/supabaseObtentionPdf";
 export default {
     data() {
         return {
-            lienActif:"src/assets/pdf/Guide_help.pdf",
+            lienActif:"/pdf/Guide_help.pdf",
             lien:"",
             backuplien:"",
             names:"",
