@@ -43,7 +43,7 @@ export default {
             <label>
                 <input :type="yoeux ? 'text':'password'" name="ok" id="lecode" placeholder="Mot de passe" required v-model="this.MDP">
                 <div class="password-icon" @click="oeil">
-                    <img  id="yoeux" :src="yoeux ? '/src/assets/img/eye.svg' : '/src/assets/img/eye-off.svg'" alt="eye-off">
+                    <img  id="yoeux" :src="yoeux ? '/eye.svg' : '/eye-off.svg'" alt="eye-off">
                 </div>
             </label>
             <button> Valider</button>
