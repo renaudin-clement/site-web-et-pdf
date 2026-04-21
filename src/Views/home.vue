@@ -6,6 +6,7 @@ export default {
             lienActif:"/pdf/Guide_help.pdf",
             lien:"",
             backuplien:"",
+            names:"",
         };
     },
     methods: {
@@ -18,17 +19,20 @@ export default {
                     alert("probleme recuperation")
                     return this.lienActif;
                 }
+                this.names = "document charger";
             }
             this.lienActif =  this.lien;
             return this.lien;
         },
 
         async handleHelp() {
-            this.lienActif = "/pdf/Guide_help.pdf";
+            this.lienActif = "src/assets/pdf/Guide_help.pdf";
+            this.names = "Guide_help.pdf";
             return this.lienActif;
         },
     },
     async mounted() {
+        this.names = "Guide_help.pdf";
     }
 };
 </script>
@@ -37,9 +41,13 @@ export default {
     <header>
         <RouterLink tag="button" class="button-15" role="button" to="/">déconnexion</RouterLink>
     </header>
+    
+    <h2 style="display: none;">{{this.names}}</h2>
+
     <div class="container">
         <iframe :src="this.lienActif"></iframe>
     </div>
+    
     <section class="separateur">
         <RouterLink to="/document" class="document">document</RouterLink>
         <section>
