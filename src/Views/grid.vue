@@ -3,7 +3,7 @@ import document from '@/components/document.vue';
 import { refreshlist, Ajouter, Supprimer } from "../utils/supabaselist.js";
 import { GetSelected, UpdateFile } from "../utils/getSelectedFile.js";
 
-import {deconnexion } from "../utils/deconnexion.js";
+import { deconnexion } from "../utils/deconnexion.js";
 
 export default {
     data() {
@@ -30,7 +30,7 @@ export default {
         deconnexion,
 
         handleFileChange(event) {
-            let Listfile =[]
+            let Listfile = []
             Listfile = event.target.files;
             if (Listfile) {
                 this.fichieracreer = Listfile;
@@ -52,7 +52,7 @@ export default {
 
         async handleUpdateFile() {
             await UpdateFile(this.listChecboxValide[0]);
-            this.appliquer =await GetSelected();
+            this.appliquer = await GetSelected();
             this.nomPdf = await refreshlist();
         },
 
@@ -63,13 +63,13 @@ export default {
             console.log(droppedFiles);
         },
 
-        SuppAjout(){
-            this.fichieracreer=null;
+        SuppAjout() {
+            this.fichieracreer = null;
         },
 
-        Annuler(){
+        Annuler() {
             this.SuppAjout();
-            this.listChecboxValide=[];
+            this.listChecboxValide = [];
             console.log(this.listChecboxValide);
         },
 
@@ -106,7 +106,8 @@ export default {
 
                 <h2>DOC DOC</h2>
                 <section class="drop">
-                    <label id="drop-zone" @drop.prevent="onDrop"  @dragover.prevent="isDragging = true" @dragleave="isDragging = false" :class="{ active: isDragging }">
+                    <label id="drop-zone" @drop.prevent="onDrop" @dragover.prevent="isDragging = true"
+                        @dragleave="isDragging = false" :class="{ active: isDragging }">
                         Drop images here, or click to upload.
                         <input type="file" id="fileInput2" @change="handleFileChange" multiple ref="fichiercreer"
                             accept="application/pdf">
@@ -128,27 +129,29 @@ export default {
                         <p>Fichier Appliqué</p>
                         <img class="petitimage" src="/src/assets/img/pdf_file.png" alt="document PDF">
                         <p>{{ this.appliquer }}</p>
-                        <img v-if="!this.nomPdf.some(file => file.name === this.appliquer)"  class="petitimage" src="/src/assets/img/attention.png" alt="document PDF">
+                        <img v-if="!this.nomPdf.some(file => file.name === this.appliquer)" class="petitimage"
+                            src="/src/assets/img/attention.png" alt="document PDF">
                     </section>
                 </section>
 
                 <section class="sectbutton">
                     <button class="button-14 button-s" role="button"
                         :disabled="(this.listChecboxValide.length > 1 || this.listChecboxValide.length <= 0)"
-                        type="button" @click="handleUpdateFile()" >valider</button>
+                        type="button" @click="handleUpdateFile()">valider</button>
                     <button class="button-15 button-s" role="button"
                         :disabled='(this.fichieracreer == null || this.fichieracreer == "")' type="button"
                         @click="handleAjouter()">ajouter</button>
                     <button class="button-16 button-s" role="button"
                         :disabled="this.listChecboxValide.length == 0 || this.listChecboxValide.length < 0"
                         type="button" @click="handleSupprimer()">supprimer</button>
-                    <button class="button-17 button-s" role="button"
-                        @click="Annuler()" :disabled='((this.fichieracreer == null || this.fichieracreer == "") && (this.listChecboxValide.length == 0 || this.listChecboxValide.length < 0))'
+                    <button class="button-17 button-s" role="button" @click="Annuler()"
+                        :disabled='((this.fichieracreer == null || this.fichieracreer == "") && (this.listChecboxValide.length == 0 || this.listChecboxValide.length < 0))'
                         type="button">Annuler</button>
                 </section>
             </section>
             <div class="wrapper scroller">
-                <document @checkers="SelectCheckbox" :place="nomPdf.indexOf(item)" :name="item.name" :isActive="listChecboxValide.includes(item.name)" v-for="item in nomPdf" />
+                <document @checkers="SelectCheckbox" :place="nomPdf.indexOf(item)" :name="item.name"
+                    :isActive="listChecboxValide.includes(item.name)" v-for="item in nomPdf" />
             </div>
 
         </form>

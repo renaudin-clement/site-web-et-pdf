@@ -1,5 +1,5 @@
 <script>
-import { connection, connectionV2, recupcode } from "../utils/connectionApp";
+import { connectionV2 } from "../utils/connectionApp";
 export default {
     data() {
         return {
@@ -9,11 +9,9 @@ export default {
         };
     },
     methods: {
-        connection,
         connectionV2,
-        recupcode,
 
-        oeil(){
+        oeil() {
             this.yoeux = !this.yoeux;
         },
 
@@ -25,9 +23,6 @@ export default {
             }
         },
 
-        async er() {
-            await recupcode()
-        },
         async mounted() {
 
         },
@@ -41,9 +36,10 @@ export default {
         <form @submit.prevent="testconnection" class="autform">
             <h1>Tape le code</h1>
             <label>
-                <input :type="yoeux ? 'text':'password'" name="ok" id="lecode" placeholder="Mot de passe" required v-model="this.MDP">
+                <input :type="yoeux ? 'text' : 'password'" name="ok" id="lecode" placeholder="Mot de passe" required
+                    v-model="this.MDP">
                 <div class="password-icon" @click="oeil">
-                    <img  id="yoeux" :src="yoeux ? '/eye.svg' : '/eye-off.svg'" alt="eye-off">
+                    <img id="yoeux" :src="yoeux ? '/eye.svg' : '/eye-off.svg'" alt="eye-off">
                 </div>
             </label>
             <button> Valider</button>
@@ -61,46 +57,43 @@ export default {
 
 <style scoped>
 label {
-  position: relative;
-  width: 100%;
+    position: relative;
+    width: 100%;
 }
 
 label input {
-  font-size: 1em;
-  padding: 1rem 1.2rem;
-  width: 100%;
-  border-radius: 5px;
-  border: 2px solid #7a7a7a;
-  transition: all 0.2s;
+    font-size: 1em;
+    padding: 1rem 1.2rem;
+    width: 100%;
+    border-radius: 5px;
+    border: 2px solid #7a7a7a;
+    transition: all 0.2s;
 }
 
 label input:focus {
-  border-color: #ff4754;
+    border-color: #ff4754;
 }
 
 
 label .password-icon {
-  display: flex;
-  align-items: center;
-  position: absolute;
-  top: 50%;
-  right: 20px;
-  transform: translateY(-50%);
-  width: 20px;
-  color: #f9f9f9;
-  transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    width: 20px;
+    color: #f9f9f9;
+    transition: all 0.2s;
 }
 
 
 label .password-icon:hover {
-  cursor: pointer;
-  color: #ff4754;
+    cursor: pointer;
+    color: #ff4754;
 }
 
 label .password-icon .feather-eye-off {
-  display: none;
+    display: none;
 }
-
-
-
 </style>

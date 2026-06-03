@@ -11,10 +11,10 @@ import Document from '@/Views/grid.vue'
 
 
 const routes = [
-  { path: '/', component:  Aunth, name:'Login'},
-  { path: '/home', component:  Home, name:'home'},
-  { path: '/document', component:  Document, name:'document'},
-  { path: '/error', component: Aunth , name:'error'},
+  { path: '/', component: Aunth, name: 'Login' },
+  { path: '/home', component: Home, name: 'home' },
+  { path: '/document', component: Document, name: 'document' },
+  { path: '/error', component: Aunth, name: 'error' },
 ]
 
 export const router = createRouter({
@@ -27,7 +27,7 @@ router.beforeEach((to, from) => {
   let login = localStorage.getItem("login");
   let admin = localStorage.getItem("admin");
 
-  if (login =="false" && to.name !== 'Login'
+  if (login == "false" && to.name !== 'Login'
   ) {
     return { name: 'Login' }
   }
