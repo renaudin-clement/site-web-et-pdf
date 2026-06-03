@@ -9,8 +9,8 @@ export default {
             backuplien: "",
             names: "",
             afficher_doc: false,
-            isMobile:false,
-            charger:false,
+            isMobile: false,
+            charger: false,
         };
     },
     methods: {
@@ -24,9 +24,11 @@ export default {
                     alert("probleme recuperation")
                     return this.lienActif;
                 }
-                this.names = "document charger";
-                this.charger = true;
             }
+            const mq = window.matchMedia('(max-width: 768px)')
+            this.isMobile = mq.matches
+            this.charger = true;
+            this.names = "document charger";
             this.lienActif = this.lien;
             return this.lien;
         },
@@ -34,7 +36,11 @@ export default {
         async handleHelp() {
             this.lienActif = "/pdf/Guide_help.pdf";
             this.names = "Guide_help.pdf";
+
+            const mq = window.matchMedia('(max-width: 768px)')
+            this.isMobile = mq.matches
             this.charger = false;
+
             return this.lienActif;
         },
     },
@@ -59,15 +65,16 @@ export default {
 
     <h2 style="display: none;">{{ this.names }}</h2>
 
-    <div v-if="!this.isMobile" class="container">
+    <div v-if="this.isMobile == false" class="container">
         <iframe :src="this.lienActif"></iframe>
     </div>
 
     <div v-else class="container">
-        <iframe v-if="!this.charger"  :src="this.lienActif"></iframe>
+        <iframe v-if="!this.charger" :src="this.lienActif"></iframe>
         <div v-else class="group-button">
-            <iframe  class="version_tel" :src="`https://docs.google.com/viewer?url=${this.lienActif}&embedded=true`"> </iframe>
-            <iframe  class="telechargment_tel" :src="this.lienActif"></iframe>
+            <iframe class="version_tel" :src="`https://docs.google.com/viewer?url=${this.lienActif}&embedded=true`">
+            </iframe>
+            <iframe class="telechargment_tel" :src="this.lienActif"></iframe>
         </div>
     </div>
 
@@ -88,11 +95,11 @@ export default {
 
 .telechargment_tel {
     padding-top: 1em;
-    height: 2em;
-    width: 2em;
+    height: 4em;
+    width: 6em;
 }
 
-.group-button{
+.group-button {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
