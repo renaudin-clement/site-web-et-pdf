@@ -9,6 +9,8 @@ export default {
             backuplien: "",
             names: "",
             afficher_doc: false,
+            isMobile:false,
+            charger:false,
         };
     },
     methods: {
@@ -23,6 +25,7 @@ export default {
                     return this.lienActif;
                 }
                 this.names = "document charger";
+                this.charger = true;
             }
             this.lienActif = this.lien;
             return this.lien;
@@ -31,17 +34,20 @@ export default {
         async handleHelp() {
             this.lienActif = "/pdf/Guide_help.pdf";
             this.names = "Guide_help.pdf";
+            this.charger = false;
             return this.lienActif;
         },
     },
     async mounted() {
         this.names = "Guide_help.pdf";
-        
         if (localStorage.getItem("admin") == "true") {
             this.afficher_doc = true;
-        }else{
+        } else {
             this.afficher_doc = false;
         }
+        const mq = window.matchMedia('(max-width: 768px)')
+        this.isMobile = mq.matches
+        mq.addEventListener('change', e => this.isMobile = e.matches)
     }
 };
 </script>
@@ -53,8 +59,16 @@ export default {
 
     <h2 style="display: none;">{{ this.names }}</h2>
 
-    <div class="container">
+    <div v-if="!this.isMobile" class="container">
         <iframe :src="this.lienActif"></iframe>
+    </div>
+
+    <div v-else class="container">
+        <iframe v-if="!this.charger"  :src="this.lienActif"></iframe>
+        <div v-else class="group-button">
+            <iframe  class="version_tel" :src="`https://docs.google.com/viewer?url=${this.lienActif}&embedded=true`"> </iframe>
+            <iframe  class="telechargment_tel" :src="this.lienActif"></iframe>
+        </div>
     </div>
 
     <section class="separateur">
@@ -67,4 +81,25 @@ export default {
 </template>
 
 
-<style scoped></style>
+<style scoped>
+.version_tel {
+    height: 80%;
+}
+
+.telechargment_tel {
+    padding-top: 1em;
+    height: 2em;
+    width: 2em;
+}
+
+.group-button{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 1em;
+}
+</style>
