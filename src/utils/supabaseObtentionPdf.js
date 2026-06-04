@@ -9,7 +9,7 @@ import { GetSelected } from "./getSelectedFile.js";
  * @returns {String} retourn un url signier.
  */
 export async function initPage() {
-  //recupere le nom de l'element a afficher
+  //recupere le nom de l'element a afficher (await important)
   let selection = await GetSelected();
   const code = localStorage.getItem("code");
 
