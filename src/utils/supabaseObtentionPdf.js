@@ -10,7 +10,7 @@ import { GetSelected } from "./getSelectedFile.js";
  */
 export async function initPage() {
   //recupere le nom de l'element a afficher
-  let selection = GetSelected();
+  let selection = await GetSelected();
   const code = localStorage.getItem("code");
 
   const path = "PDFstocker/" + selection;
