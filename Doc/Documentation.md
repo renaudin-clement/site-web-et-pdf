@@ -115,6 +115,22 @@ utils
   └── supabaseObtentionPdf.js
 ```
 
+#### Comment son gerer les fonctions
+les fonctions reccuperer un code et essaye d'appeller les fonctions du backend via supabase edge fonction on le remarque avec lutilisation des fetch et la creation de body pour l'utiliser dans le fetch
+
+les fonction et tout la configuration se trouve dans lautre depot qui est prive nommer Site Web et PDf Back
+**[Site Web et PDf Back](https://github.com/renaudin-clement/Site-Web-et-PDf-Back)**
+
+
+| Les fonction edge | leur utilité|
+|:-------- |:--------|
+|**connectionApp**|Controleur pour la connection|
+|**connectionSupabase**|Controleur pour la connection supabase|
+|**deconnexion**|Fonction deconnection basique|
+|**getSelectedFile**|Fonction qui permet de reccuperer le fichier a afficher avec edge fonction|
+|**supabaselist**|regroupe les appelle de fonction qui ajoute supp et modif les fichier dans la base|
+|**supabaseObtentionPdf**|reccuperer l'url signier pour afficher le document via media|
+
 ### Public
 le public contient uniquement ce que l'on veux afficher ou fournir des document non essentielle ou priver  
 les types de fichier qu'on peux retrouver son:  
