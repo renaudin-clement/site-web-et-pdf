@@ -68,4 +68,6 @@ Copyright © Clément Renaudin.
 Tous droits réservés.
 
 Ce code est la propriété exclusive de l’auteur. Aucune copie, modification, distribution, publication ou exploitation commerciale n’est autorisée sans autorisation écrite préalable.
+Exepter le lieu du stage du 1 avril au 31 juillet 2026 a Medicis
+
 
